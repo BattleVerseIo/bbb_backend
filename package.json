@@ -10,9 +10,11 @@
   "author": "Alex Atallah <alex.atallah@opensea.io>",
   "license": "MIT",
   "dependencies": {
+    "@pinata/sdk": "^1.1.23",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "simple-json-db": "^1.2.3"
   },
   "devDependencies": {
     "request": "^2.81.0",

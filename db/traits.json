@@ -1,0 +1,68 @@
+{
+    "1": [
+        {
+            "trait_type": "body",
+            "value": "blue cat skin"
+        },
+        {
+            "trait_type": "hats",
+            "value": "tvhead purple"
+        },
+        {
+            "trait_type": "shirt",
+            "value": "deepsea bronze"
+        },
+        {
+            "trait_type": "face",
+            "value": "grin"
+        },
+        {
+            "trait_type": "tier",
+            "value": "exotic_1"
+        }
+    ],
+    "2": [
+        {
+            "trait_type": "body",
+            "value": "blue cat skin"
+        },
+        {
+            "trait_type": "hats",
+            "value": "deepsea bronze"
+        },
+        {
+            "trait_type": "shirt",
+            "value": "tiger"
+        },
+        {
+            "trait_type": "face",
+            "value": "glasses"
+        },
+        {
+            "trait_type": "tier",
+            "value": "exotic_1"
+        }
+    ],
+    "3": [
+        {
+            "trait_type": "body",
+            "value": "blue cat skin"
+        },
+        {
+            "trait_type": "hats",
+            "value": "beret pink"
+        },
+        {
+            "trait_type": "shirt",
+            "value": "monk"
+        },
+        {
+            "trait_type": "face",
+            "value": "beard pirate"
+        },
+        {
+            "trait_type": "tier",
+            "value": "classy_2"
+        }
+    ]
+}
