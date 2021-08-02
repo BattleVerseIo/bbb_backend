@@ -5,6 +5,9 @@ const JSONdb = require('simple-json-db');
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
 const dbTraits = new JSONdb('./db/traits.json');
 
+const revealIsActive = false;
+const placeholderIpfsHash = 'QmQN3XpABtJoiyDTE3HV2ikA2tCaMHLBKyvsn5XCTmzYCh';
+
 const PORT = process.env.PORT || 5000
 
 const app = express()
@@ -24,13 +27,21 @@ app.get('/token/:token_id', function (req, res) {
   const ipfsHash = dbIpfsHashes.get(tokenId);
   const traits = dbTraits.get(tokenId);
 
-  const tokenDetails = {
-    description: "Baby Battle Bots is a collection of randomly generated and stylistically curated NFTs that exist on the Ethereum Blockchain. ",
-    image: 'https://ipfs.io/ipfs/' + ipfsHash,
-    ipfs_image: 'https://ipfs.io/ipfs/' + ipfsHash,
+  var tokenDetails = {
+    description: "Baby Battle Bots is сute and deadly gamified collection of 10,000 procedurally generated 3d robots that live and fight on Ethereum blockchain.",
+    image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
+    ipfs_image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Baby Battle Bot #' + tokenId,
-    attributes: traits
+    attributes: {
+      'Ready To Fight': 'Almost!'
+    }
   };
+
+  if (revealIsActive) {
+    tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.attributes = traits;
+  }
 
   res.send(tokenDetails);
 })
