@@ -30,7 +30,6 @@ app.get('/token/:token_id', function (req, res) {
   var tokenDetails = {
     description: "Baby Battle Bots is сute and deadly gamified collection of 10,000 procedurally generated 3d robots that live and fight on Ethereum blockchain.",
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
-    ipfs_image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Baby Battle Bot #' + tokenId,
     attributes: {
       'Ready To Fight': 'Almost!'
