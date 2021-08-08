@@ -32,7 +32,7 @@ app.get('/token/:token_id', function (req, res) {
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Baby Battle Bot #' + tokenId,
     attributes: {
-      'Ready To Fight': 'Almost!'
+      'Ready To Fight': 'Soon'
     }
   };
 
