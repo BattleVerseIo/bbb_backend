@@ -6,7 +6,7 @@ const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
 const dbTraits = new JSONdb('./db/traits.json');
 
 const revealIsActive = false;
-const placeholderIpfsHash = 'QmQN3XpABtJoiyDTE3HV2ikA2tCaMHLBKyvsn5XCTmzYCh';
+const placeholderIpfsHash = 'QmchQaQQ9CMwV3nDLBvcgqn1td3mAd4gf3hzqwPB3Q9hyP';
 
 const PORT = process.env.PORT || 5000
 
