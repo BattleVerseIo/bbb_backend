@@ -7,7 +7,11 @@ const JSONdb = require('simple-json-db');
 const db = new JSONdb('./db/ipfs_hashes.json');
 const project = 'bbb';
 
-function pinFile(file) {
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function pinFile(file) {
     const readableStreamForFile = fs.createReadStream(file);
     const options = {
         pinataMetadata: {
@@ -22,9 +26,30 @@ function pinFile(file) {
     return pinata.pinFileToIPFS(readableStreamForFile, options);
 }
 
-pinata.testAuthentication().then((result) => {
-    if (result.authenticated === true) {
+async function upload() {
+    var auth = await pinata.testAuthentication();
+    if (auth.authenticated == true) {
         const sourcePath = './local/generated_images';
+
+        var files = fs.readdirSync(sourcePath);
+        for (let file of files) {
+            fileId = file.replace('.jpg', '');
+            if (!db.get(fileId)) {
+                await sleep(500);
+                var pinResult = await pinFile(sourcePath + '/' + file);
+                db.set(fileId, pinResult.IpfsHash);
+                console.log(file + ' --- ' + pinResult.IpfsHash);
+            } else {
+                console.log(fileId + " already uploaded")
+            }
+        }
+    }
+}
+
+upload();
+/* then((result) => {
+    if (result.authenticated === true) {
+
 
         fs.readdirSync(sourcePath).forEach(file => {
             pinFile(sourcePath + '\\' + file).then((result) => {
@@ -38,4 +63,4 @@ pinata.testAuthentication().then((result) => {
     }
 }).catch((err) => {
     console.log(err);
-});
+}); */
