@@ -28,9 +28,9 @@ app.get('/token/:token_id', function (req, res) {
   const traits = dbTraits.get(tokenId);
 
   var tokenDetails = {
-    description: "Baby Battle Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
+    description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
-    name: 'Baby Battle Bot #' + tokenId,
+    name: 'Baby Combat Bot #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
     }
