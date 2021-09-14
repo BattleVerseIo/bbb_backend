@@ -65,7 +65,7 @@ app.get('/prize/:token_id', function (req, res) {
   var tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
     image: 'https://ipfs.io/ipfs/' + ipfsPreviewHash,
-    animation_url: 'https://ipfs.io/ipfs/' + ipfsAnimationHash,
+    animation_url: 'https://gateway.pinata.cloud/ipfs/' + ipfsAnimationHash,
     name: 'Puzzle Prize #' + tokenId,
     attributes: {
       'Type': traitType[winnerCategory]
