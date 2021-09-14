@@ -4,7 +4,7 @@ const pinata = pinataSDK('cc184157dc8a45893259', '1d9fa62ceaf03d10682bcce4a00397
 const fs = require('fs');
 
 const JSONdb = require('simple-json-db');
-const db = new JSONdb('./db/ipfs_hashes_prizes.json');
+const db = new JSONdb('./db/ipfs_hashes_prizes_previews.json');
 const project = 'bbb';
 
 function sleep(ms) {
@@ -29,7 +29,7 @@ async function pinFile(file) {
 async function upload() {
     var auth = await pinata.testAuthentication();
     if (auth.authenticated == true) {
-        const sourcePath = './local/prizes';
+        const sourcePath = './local/prizes/previews';
 
         var files = fs.readdirSync(sourcePath);
         for (let file of files) {
