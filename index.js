@@ -3,6 +3,7 @@ const path = require('path')
 
 const JSONdb = require('simple-json-db');
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
+const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
 const dbTraits = new JSONdb('./db/traits.json');
 
 const revealIsActive = true;
@@ -41,6 +42,22 @@ app.get('/token/:token_id', function (req, res) {
     tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
     tokenDetails.attributes = traits;
   }
+
+  res.send(tokenDetails);
+})
+
+app.get('/prize/:token_id', function (req, res) {
+  const tokenId = parseInt(req.params.token_id).toString();
+  const ipfsHash = dbIpfsHashesPrizes.get(tokenId);
+
+  var tokenDetails = {
+    description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
+    image: 'https://ipfs.io/ipfs/' + ipfsHash,
+    name: 'Puzzle Prize #' + tokenId,
+    attributes: {
+      'Ready To Battle': 'Soon'
+    }
+  };
 
   res.send(tokenDetails);
 })
