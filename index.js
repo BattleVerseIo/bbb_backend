@@ -50,7 +50,7 @@ app.get('/token/:token_id', function (req, res) {
 
 app.get('/prize/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
-  const winnerCategory = dbWinnerCategories.get(tokenId);
+  const winnerCategory = dbWinnerCategories.get(tokenId).toString();
   const ipfsHash = dbIpfsHashesPrizes.get(winnerCategory);
   const traitType = {
     "non_owner": "Iridescent",
