@@ -3,8 +3,10 @@ const path = require('path')
 
 const JSONdb = require('simple-json-db');
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
-const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
 const dbTraits = new JSONdb('./db/traits.json');
+
+const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
+const dbWinnerCategories = new JSONdb('./db/winner_categories.json');
 
 const revealIsActive = true;
 const placeholderIpfsHash = 'QmchQaQQ9CMwV3nDLBvcgqn1td3mAd4gf3hzqwPB3Q9hyP';
@@ -48,14 +50,22 @@ app.get('/token/:token_id', function (req, res) {
 
 app.get('/prize/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
-  const ipfsHash = dbIpfsHashesPrizes.get(tokenId);
+  const winnerCategory = dbWinnerCategories.get(tokenId);
+  const ipfsHash = dbIpfsHashesPrizes.get(winnerCategory);
+  const traitType = {
+    "non_owner": "Iridescent",
+    "owner_1": "White Carbon",
+    "owner_2": "Purple",
+    "owner_3": "Gold",
+    "owner_5": "Gem"
+  }
 
   var tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
     image: 'https://ipfs.io/ipfs/' + ipfsHash,
     name: 'Puzzle Prize #' + tokenId,
     attributes: {
-      'Ready To Battle': 'Soon'
+      'Type': traitType[winnerCategory]
     }
   };
 
