@@ -59,7 +59,8 @@ app.get('/prize/:token_id', function (req, res) {
     "owner_1": "White Carbon",
     "owner_2": "Purple",
     "owner_3": "Gold",
-    "owner_5": "Gem"
+    "owner_5": "Gem",
+    "first": "Hexagon Awesomness"
   }
 
   var tokenDetails = {
