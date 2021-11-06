@@ -5,7 +5,7 @@ const JSONdb = require('simple-json-db');
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
 const dbIpfsHashesShrooms = new JSONdb('./db/ipfs_hashes_shrooms.json');
 const dbTraits = new JSONdb('./db/traits.json');
-const dbTraitsShrooms = new JSONdb('./db/traits.json');
+const dbTraitsShrooms = new JSONdb('./db/traits_shrooms.json');
 
 const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
 const dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json');
