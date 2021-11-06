@@ -3,7 +3,9 @@ const path = require('path')
 
 const JSONdb = require('simple-json-db');
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
+const dbIpfsHashesShrooms = new JSONdb('./db/ipfs_hashes_shrooms.json');
 const dbTraits = new JSONdb('./db/traits.json');
+const dbTraitsShrooms = new JSONdb('./db/traits.json');
 
 const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
 const dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json');
@@ -35,6 +37,29 @@ app.get('/token/:token_id', function (req, res) {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Baby Combat Bot #' + tokenId,
+    attributes: {
+      'Ready To Battle': 'Soon'
+    }
+  };
+
+  if (revealIsActive) {
+    tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.attributes = traits;
+  }
+
+  res.send(tokenDetails);
+})
+
+app.get('/shroom/:token_id', function (req, res) {
+  const tokenId = parseInt(req.params.token_id).toString();
+  const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
+  const traits = dbTraitsShrooms.get(tokenId);
+
+  var tokenDetails = {
+    description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
+    image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
+    name: 'Battle Shroom #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
     }
