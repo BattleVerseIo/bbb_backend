@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const cors = require('cors')
 
 const JSONdb = require('simple-json-db');
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
@@ -23,6 +24,8 @@ const app = express()
 
 // Static public files
 //app.use(express.static(path.join(__dirname, 'public')))
+
+app.use(cors());
 
 app.get('/', function (req, res) {
   res.send('All is up');
