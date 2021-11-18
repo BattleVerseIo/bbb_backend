@@ -38,7 +38,6 @@ app.get('/', function (req, res) {
 
 function getStat(db, type, traits) {
   result = false;
-
   statsAll = db.get(type);
 
   traits.forEach(trait => {
@@ -57,7 +56,7 @@ function getStat(db, type, traits) {
 app.get('/bot/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashes.get(tokenId);
-  const traits = dbTraitsBots.get(tokenId);
+  traits = dbTraitsBots.get(tokenId);
 
   weaponPower = getStat(dbStatsBots, "Weapon", traits);
   toyPower = getStat(dbStatsBots, "Toy", traits)
@@ -83,6 +82,9 @@ app.get('/bot/:token_id', function (req, res) {
   }
 
   res.send(tokenDetails);
+
+  traits.pop();
+  traits.pop();
 })
 
 app.get('/shroom/:token_id', function (req, res) {
@@ -114,6 +116,9 @@ app.get('/shroom/:token_id', function (req, res) {
   }
 
   res.send(tokenDetails);
+
+  traits.pop();
+  traits.pop();
 })
 
 app.get('/prize/:token_id', function (req, res) {
