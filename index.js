@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
   res.send('All is up');
 })
 
-app.get('/token/:token_id', function (req, res) {
+app.get('/bot/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashes.get(tokenId);
   const traits = dbTraits.get(tokenId);
@@ -42,7 +42,9 @@ app.get('/token/:token_id', function (req, res) {
     name: 'Baby Combat Bot #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
-    }
+    },
+    alpha_1: 'https://storage.googleapis.com/battleverse/bots_1/a_'+tokenId+'.png',
+    alpha_2: 'https://storage.googleapis.com/battleverse/bots_2/a_'+tokenId+'.png'
   };
 
   if (revealIsActive) {
@@ -65,7 +67,9 @@ app.get('/shroom/:token_id', function (req, res) {
     name: 'Battle Shroom #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
-    }
+    },
+    alpha_1: 'https://storage.googleapis.com/battleverse/shrooms_1/a_'+tokenId+'.png',
+    alpha_2: 'https://storage.googleapis.com/battleverse/shrooms_2/a_'+tokenId+'.png'
   };
 
   if (revealIsActive) {
