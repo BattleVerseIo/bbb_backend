@@ -62,7 +62,7 @@ app.get('/bot/:token_id', function (req, res) {
   toyPower = getStat(dbStatsBots, "Toy", traits)
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
-  traits.push({"display_type": "boost_number", "trait_type": "Defense", "value": toyPower});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toyPower});
 
   var tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
@@ -96,7 +96,7 @@ app.get('/shroom/:token_id', function (req, res) {
   toolPower = getStat(dbStatsShrooms, "Tools", traits)
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
-  traits.push({"display_type": "boost_number", "trait_type": "Defense", "value": toolPower});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toolPower});
 
   var tokenDetails = {
     description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
