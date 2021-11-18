@@ -90,7 +90,7 @@ app.get('/bot/:token_id', function (req, res) {
 app.get('/shroom/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
-  const traits = dbTraitsShrooms.get(tokenId);
+  traits = dbTraitsShrooms.get(tokenId);
 
   weaponPower = getStat(dbStatsShrooms, "Weapon", traits);
   toolPower = getStat(dbStatsShrooms, "Tools", traits)
