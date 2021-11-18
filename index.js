@@ -3,10 +3,15 @@ const path = require('path')
 const cors = require('cors')
 
 const JSONdb = require('simple-json-db');
+
 const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
 const dbIpfsHashesShrooms = new JSONdb('./db/ipfs_hashes_shrooms.json');
-const dbTraits = new JSONdb('./db/traits.json');
+
+const dbTraitsBots = new JSONdb('./db/traits_bots.json');
 const dbTraitsShrooms = new JSONdb('./db/traits_shrooms.json');
+
+const dbStatsBots = new JSONdb('./db/stats_bots.json');
+const dbStatsShrooms = new JSONdb('./db/stats_shrooms.json');
 
 const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
 const dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json');
@@ -31,10 +36,34 @@ app.get('/', function (req, res) {
   res.send('All is up');
 })
 
+function getStat(db, type, traits) {
+  result = false;
+
+  statsAll = db.get(type);
+
+  traits.forEach(trait => {
+    foundStat = statsAll.find(function(stat, index){
+      if(trait.trait_type == type && stat.item == trait.value)
+        return true;
+    });
+
+    if(typeof foundStat !== 'undefined')
+      result = foundStat;
+  });
+
+  return result ? result.power : -1;
+}
+
 app.get('/bot/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashes.get(tokenId);
-  const traits = dbTraits.get(tokenId);
+  const traits = dbTraitsBots.get(tokenId);
+
+  weaponPower = getStat(dbStatsBots, "Weapon", traits);
+  toyPower = getStat(dbStatsBots, "Toy", traits)
+
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
+  traits.push({"display_type": "boost_number", "trait_type": "Defense", "value": toyPower});
 
   var tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
@@ -44,7 +73,7 @@ app.get('/bot/:token_id', function (req, res) {
       'Ready To Battle': 'Soon'
     },
     alpha_1: 'https://battleverse.storage.googleapis.com/bots_1/a_'+tokenId+'.png',
-    alpha_2: 'https://battleverse.storage.googleapis.com/bots_2/a_'+tokenId+'.png'
+    alpha_2: 'https://battleverse.storage.googleapis.com/bots_2/a_'+tokenId+'.png',
   };
 
   if (revealIsActive) {
@@ -60,6 +89,12 @@ app.get('/shroom/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
   const traits = dbTraitsShrooms.get(tokenId);
+
+  weaponPower = getStat(dbStatsShrooms, "Weapon", traits);
+  toolPower = getStat(dbStatsShrooms, "Tools", traits)
+
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
+  traits.push({"display_type": "boost_number", "trait_type": "Defense", "value": toolPower});
 
   var tokenDetails = {
     description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
