@@ -71,8 +71,8 @@ app.get('/bot/:token_id', function (req, res) {
     attributes: {
       'Ready To Battle': 'Soon'
     },
-    alpha_1: 'https://battleverse.storage.googleapis.com/bots_1/a_'+tokenId+'.png',
-    alpha_2: 'https://battleverse.storage.googleapis.com/bots_2/a_'+tokenId+'.png',
+    alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
+    alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
   };
 
   if (revealIsActive) {
@@ -105,8 +105,8 @@ app.get('/shroom/:token_id', function (req, res) {
     attributes: {
       'Ready To Battle': 'Soon'
     },
-    alpha_1: 'https://storage.googleapis.com/battleverse/shrooms_1/a_'+tokenId+'.png',
-    alpha_2: 'https://storage.googleapis.com/battleverse/shrooms_2/a_'+tokenId+'.png'
+    alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
+    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
   };
 
   if (revealIsActive) {
