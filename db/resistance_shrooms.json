@@ -1,191 +1,181 @@
 {
     "Resistance": [
-	    { 
-            "item": "Tripple Hook",
+        {
+            "item": "Beehive",
+            "values":  
+            {
+                "Tripple Hook": 45,
+                "Nunchucks": 45,
+                "Sword": 47,
+                "Scissors": 47,
+                "Long Knife": 46, 
+                "Mace": 47,
+                "Hammer": 48,
+                "Axe": 47,
+                "Hoe": 50,
+                "Shovel": 45,
+                "Butcher": 43
+            }
+        },
+        {   "item": "Trap",
             "values":
-            {   
-                "Beehive":  45,
-                "Trap":  45, 
-                "Bomb":  46, 
-                "Poison":  46, 
-                "Dreamcatcher":  47, 
-                "Liquid":  45, 
-                "Torch":  48, 
-                "Net":  47, 
-                "Circle Shield":  45, 
-                "Doll":  47, 
-                "Hexagon Shield":  50
+            {
+                "Tripple": 45,
+                "Nunchucks": 48,
+                "Sword": 45,
+                "Scissors": 47,
+                "Long": 47, 
+                "Mace": 46,
+                "Hammer": 46,
+                "Axe": 48,
+                "Hoe": 48,
+                "Shovel": 46,
+                "Butcher": 44
             }
         },
-        { 
-            "item": "Nunchucks",
-            "values": 
-            {   
-                "Beehive": 45, 
-                "Trap": 48, 
-                "Bomb": 45, 
-                "Poison": 50, 
-                "Dreamcatcher": 47, 
-                "Liquid": 45, 
-                "Torch": 46, 
-                "Net": 45, 
-                "Circle Shield": 46, 
-                "Doll": 48, 
-                "Hexagon Shield": 46
+        {   "item": "Bomb",
+            "values":
+            {
+                "Tripple": 46,
+                "Nunchucks": 45,
+                "Sword": 46,
+                "Scissors": 45,
+                "Long": 47, 
+                "Mace": 46,
+                "Hammer": 48,
+                "Axe": 50,
+                "Hoe": 46,
+                "Shovel": 47,
+                "Butcher": 46
             }
         },
-        {
-            "item": "Sword",
-            "values": 
-                {   
-                    "Beehive":47, 
-                    "Trap" :45, 
-                    "Bomb": 46, 
-                    "Poison": 45, 
-                    "Dreamcatcher": 48, 
-                    "Liquid": 46, 
-                    "Torch": 47, 
-                    "Net": 46, 
-                    "Circle Shield": 50, 
-                    "Doll": 47, 
-                    "Hexagon Shield": 49
-                }
+        {   "item": "Poison",
+            "values":
+            {
+                "Tripple": 46,
+                "Nunchucks": 50,
+                "Sword": 45,
+                "Scissors": 45,
+                "Long": 46, 
+                "Mace": 47,
+                "Hammer": 46,
+                "Axe": 48,
+                "Hoe": 46,
+                "Shovel": 47,
+                "Butcher": 44
+            }
         },
-        {
-            "item": "Scissors",
-            "values": 
-                {   
-                    "Beehive":47, 
-                    "Trap" :47, 
-                    "Bomb": 45, 
-                    "Poison": 45, 
-                    "Dreamcatcher": 46, 
-                    "Liquid": 47, 
-                    "Torch": 47, 
-                    "Net": 50, 
-                    "Circle Shield": 47, 
-                    "Doll": 47, 
-                    "Hexagon Shield": 46
-                }
+        {   "item": "Dreamcatcher",
+            "values":
+            {
+                "Tripple": 47,
+                "Nunchucks": 47,
+                "Sword": 48,
+                "Scissors": 46,
+                "Long": 46, 
+                "Mace": 46,
+                "Hammer": 50,
+                "Axe": 45,
+                "Hoe": 46,
+                "Shovel": 45,
+                "Butcher": 45
+            }
         },
-        {
-            "item": "Long Knife",
-            "values": 
-                {   
-                    "Beehive":46, 
-                    "Trap" :47, 
-                    "Bomb": 47, 
-                    "Poison": 46, 
-                    "Dreamcatcher": 46, 
-                    "Liquid": 47, 
-                    "Torch": 50, 
-                    "Net": 47, 
-                    "Circle Shield": 45, 
-                    "Doll": 49, 
-                    "Hexagon Shield": 45
-                }
+        {   "item": "Liquid",
+            "values":
+            {
+                "Tripple": 45,
+                "Nunchucks": 45,
+                "Sword": 46,
+                "Scissors": 47,
+                "Long": 47, 
+                "Mace": 48,
+                "Hammer": 45,
+                "Axe": 47,
+                "Hoe": 46,
+                "Shovel": 50,
+                "Butcher": 45
+            }
         },
-        {
-            "item": "Mace",
-            "values": 
-                {   
-                    "Beehive":47, 
-                    "Trap" :46, 
-                    "Bomb": 46, 
-                    "Poison": 47, 
-                    "Dreamcatcher": 46, 
-                    "Liquid": 48, 
-                    "Torch": 47, 
-                    "Net": 46, 
-                    "Circle Shield": 48, 
-                    "Doll": 46, 
-                    "Hexagon Shield": 49
-                }
+        {   "item": "Torch",
+            "values":
+            {
+                "Tripple": 48,
+                "Nunchucks": 46,
+                "Sword": 47,
+                "Scissors": 47,
+                "Long": 50, 
+                "Mace": 47,
+                "Hammer": 46,
+                "Axe": 45,
+                "Hoe": 46,
+                "Shovel": 45,
+                "Butcher": 43
+            }
         },
-        {
-            "item": "Hammer",
-            "values": 
-                {   
-                    "Beehive":48, 
-                    "Trap" :46, 
-                    "Bomb": 48, 
-                    "Poison": 46, 
-                    "Dreamcatcher": 50, 
-                    "Liquid": 45, 
-                    "Torch": 46, 
-                    "Net": 48, 
-                    "Circle Shield": 47, 
-                    "Doll": 47, 
-                    "Hexagon Shield": 46
-                }
+        {   "item": "Net",
+            "values":
+            {
+                "Tripple": 47,
+                "Nunchucks": 45,
+                "Sword": 46,
+                "Scissors": 50,
+                "Long": 47, 
+                "Mace": 46,
+                "Hammer": 48,
+                "Axe": 46,
+                "Hoe": 48,
+                "Shovel": 47,
+                "Butcher": 46
+            }
         },
-        {
-            "item": "Axe",
-            "values": 
-                {   
-                    "Beehive":47, 
-                    "Trap" :48, 
-                    "Bomb": 50, 
-                    "Poison": 48, 
-                    "Dreamcatcher": 45, 
-                    "Liquid": 47, 
-                    "Torch": 45, 
-                    "Net": 46, 
-                    "Circle Shield": 48, 
-                    "Doll": 46, 
-                    "Hexagon Shield": 46
-                }
+        {   "item": "Circle Shield",
+            "values":
+            {
+                "Tripple": 45,
+                "Nunchucks": 46,
+                "Sword": 50,
+                "Scissors": 47,
+                "Long": 45, 
+                "Mace": 48,
+                "Hammer": 47,
+                "Axe": 48,
+                "Hoe": 47,
+                "Shovel": 47,
+                "Butcher": 48
+            }
         },
-        {
-            "item": "Hoe",
-            "values": 
-                {   
-                    "Beehive":50, 
-                    "Trap" :48, 
-                    "Bomb": 46, 
-                    "Poison": 46, 
-                    "Dreamcatcher": 46, 
-                    "Liquid": 46, 
-                    "Torch": 46, 
-                    "Net": 48, 
-                    "Circle Shield": 47, 
-                    "Doll": 46, 
-                    "Hexagon Shield": 46
-                }
+        {   "item": "Doll",
+            "values":
+            {
+                "Tripple": 47,
+                "Nunchucks": 48,
+                "Sword": 47,
+                "Scissors": 47,
+                "Long": 49, 
+                "Mace": 46,
+                "Hammer": 47,
+                "Axe": 46,
+                "Hoe": 46,
+                "Shovel": 49,
+                "Butcher": 49
+            }
         },
-        {
-            "item": "Liquid",
-            "values": 
-                {   
-                    "Beehive":45, 
-                    "Trap" :46, 
-                    "Bomb": 47, 
-                    "Poison": 47, 
-                    "Dreamcatcher": 45, 
-                    "Liquid": 50, 
-                    "Torch": 45, 
-                    "Net": 47, 
-                    "Circle Shield": 47, 
-                    "Doll": 49, 
-                    "Hexagon Shield": 47
-                }
-        },
-        {
-            "item": "Butcher",
-            "values": 
-                {   
-                    "Beehive":46, 
-                    "Trap" :46, 
-                    "Bomb": 45, 
-                    "Poison": 50, 
-                    "Dreamcatcher": 47, 
-                    "Liquid": 45, 
-                    "Torch": 46, 
-                    "Net": 45, 
-                    "Circle Shield": 46, 
-                    "Doll": 49, 
-                    "Hexagon Shield": 45
-                }
+        {   "item": "Hexagon Shield",
+            "values":
+            {
+                "Tripple": 50,
+                "Nunchucks": 46,
+                "Sword": 49,
+                "Scissors": 46,
+                "Long": 45, 
+                "Mace": 49,
+                "Hammer": 46,
+                "Axe": 46,
+                "Hoe": 46,
+                "Shovel": 47,
+                "Butcher": 47
+            }
         }
     ]
 }
