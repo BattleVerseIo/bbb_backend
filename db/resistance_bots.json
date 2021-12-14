@@ -1,0 +1,173 @@
+{
+    "Resistance": [
+	    { 
+            "item": "Lighting",
+            "values":
+            {   
+                "Drum":  45,
+                "Windmill":  45, 
+                "Icecream":  46, 
+                "Ducky":  46, 
+                "Bottle":  47, 
+                "Shovel":  45, 
+                "Shaker":  48, 
+                "Ball":  47, 
+                "Lollipop":  45, 
+                "Rocket":  47, 
+                "Balloons":  50
+            }
+        },
+        { 
+            "item": "Claw",
+            "values": 
+            {   
+                "Drum": 45, 
+                "Windmill": 48, 
+                "Icecream": 45, 
+                "Ducky": 50, 
+                "Bottle": 47, 
+                "Shovel": 45, 
+                "Shaker": 46, 
+                "Ball": 45, 
+                "Lollipop": 46, 
+                "Rocket": 48, 
+                "Balloons": 46}
+        },
+        {
+            "item": "Club",
+            "values": 
+                {   
+                    "Drum":47, 
+                    "Windmill" :45, 
+                    "Icecream": 46, 
+                    "Ducky": 45, 
+                    "Bottle": 48, 
+                    "Shovel": 46, 
+                    "Shaker": 47, 
+                    "Ball": 46, 
+                    "Lollipop": 50, 
+                    "Rocket": 47, 
+                    "Balloons": 49
+                }
+        },
+        {
+            "item": "DoubleSpike",
+            "values": 
+                {   
+                    "Drum":47, 
+                    "Windmill" :47, 
+                    "Icecream": 45, 
+                    "Ducky": 45, 
+                    "Bottle": 46, 
+                    "Shovel": 47, 
+                    "Shaker": 47, 
+                    "Ball": 50, 
+                    "Lollipop": 47, 
+                    "Rocket": 47, 
+                    "Balloons": 46
+                }
+        },
+        {
+            "item": "Spike",
+            "values": 
+                {   
+                    "Drum":46, 
+                    "Windmill" :47, 
+                    "Icecream": 47, 
+                    "Ducky": 46, 
+                    "Bottle": 46, 
+                    "Shovel": 47, 
+                    "Shaker": 50, 
+                    "Ball": 47, 
+                    "Lollipop": 45, 
+                    "Rocket": 49, 
+                    "Balloons": 45
+                }
+        },
+        {
+            "item": "Blade",
+            "values": 
+                {   
+                    "Drum":47, 
+                    "Windmill" :46, 
+                    "Icecream": 46, 
+                    "Ducky": 47, 
+                    "Bottle": 46, 
+                    "Shovel": 48, 
+                    "Shaker": 47, 
+                    "Ball": 46, 
+                    "Lollipop": 48, 
+                    "Rocket": 46, 
+                    "Balloons": 49
+                }
+        },
+        {
+            "item": "Saw",
+            "values": 
+                {   
+                    "Drum":48, 
+                    "Windmill" :46, 
+                    "Icecream": 48, 
+                    "Ducky": 46, 
+                    "Bottle": 50, 
+                    "Shovel": 45, 
+                    "Shaker": 46, 
+                    "Ball": 48, 
+                    "Lollipop": 47, 
+                    "Rocket": 47, 
+                    "Balloons": 46
+                }
+        },
+        {
+            "item": "Drill",
+            "values": 
+                {   
+                    "Drum":47, 
+                    "Windmill" :48, 
+                    "Icecream": 50, 
+                    "Ducky": 48, 
+                    "Bottle": 45, 
+                    "Shovel": 47, 
+                    "Shaker": 45, 
+                    "Ball": 46, 
+                    "Lollipop": 48, 
+                    "Rocket": 46, 
+                    "Balloons": 46
+                }
+        },
+        {
+            "item": "Hammer",
+            "values": 
+                {   
+                    "Drum":50, 
+                    "Windmill" :48, 
+                    "Icecream": 46, 
+                    "Ducky": 46, 
+                    "Bottle": 46, 
+                    "Shovel": 46, 
+                    "Shaker": 46, 
+                    "Ball": 48, 
+                    "Lollipop": 47, 
+                    "Rocket": 46, 
+                    "Balloons": 46
+                }
+        },
+        {
+            "item": "Axe",
+            "values": 
+                {   
+                    "Drum":45, 
+                    "Windmill" :46, 
+                    "Icecream": 47, 
+                    "Ducky": 47, 
+                    "Bottle": 45, 
+                    "Shovel": 50, 
+                    "Shaker": 45, 
+                    "Ball": 47, 
+                    "Lollipop": 47, 
+                    "Rocket": 49, 
+                    "Balloons": 47
+                }
+        }
+    ]
+}
