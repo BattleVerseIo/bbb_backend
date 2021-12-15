@@ -1,31 +1,34 @@
-const express = require('express')
-const path = require('path')
-const cors = require('cors')
+const express = require('express'),
+  path = require('path'),
+  cors = require('cors'),
 
-const JSONdb = require('simple-json-db');
+  JSONdb = require('simple-json-db'),
 
-const dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json');
-const dbIpfsHashesShrooms = new JSONdb('./db/ipfs_hashes_shrooms.json');
+  dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json'),
+  dbIpfsHashesShrooms = new JSONdb('./db/ipfs_hashes_shrooms.json'),
 
-const dbTraitsBots = new JSONdb('./db/traits_bots.json');
-const dbTraitsShrooms = new JSONdb('./db/traits_shrooms.json');
+  dbTraitsBots = new JSONdb('./db/traits_bots.json'),
+  dbTraitsShrooms = new JSONdb('./db/traits_shrooms.json'),
 
-const dbStatsBots = new JSONdb('./db/stats_bots.json');
-const dbStatsShrooms = new JSONdb('./db/stats_shrooms.json');
+  dbStatsBots = new JSONdb('./db/stats_bots.json'),
+  dbStatsShrooms = new JSONdb('./db/stats_shrooms.json'),
 
-const dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json');
-const dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json');
-const dbWinnerCategories = new JSONdb('./db/winner_categories.json');
+  dbResistanceBots = new JSONdb('./db/resistance_bots.json'),
+  dbResistanceShrooms = new JSONdb('./db/resistance_shrooms.json'),
 
-const revealIsActive = true;
-const placeholderIpfsHash = 'QmchQaQQ9CMwV3nDLBvcgqn1td3mAd4gf3hzqwPB3Q9hyP';
+  dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json'),
+  dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json'),
+  dbWinnerCategories = new JSONdb('./db/winner_categories.json'),
 
-const PORT = process.env.PORT || 5000
+  revealIsActive = true,
+  placeholderIpfsHash = 'QmchQaQQ9CMwV3nDLBvcgqn1td3mAd4gf3hzqwPB3Q9hyP',
 
-const app = express()
-  .set('port', PORT)
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
+  PORT = process.env.PORT || 5000,
+
+  app = express()
+    .set('port', PORT)
+    .set('views', path.join(__dirname, 'views'))
+    .set('view engine', 'ejs')
 
 // Static public files
 //app.use(express.static(path.join(__dirname, 'public')))
@@ -33,8 +36,10 @@ const app = express()
 app.use(cors());
 
 app.get('/', function (req, res) {
-  res.send('All is up');
+  res.send('All_is up');
 })
+
+
 
 function getStat(db, type, traits) {
   result = false;
@@ -63,8 +68,24 @@ app.get('/bot/:token_id', function (req, res) {
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toyPower});
+  
+  let resist = dbResistanceBots.storage.Resistance
+  let toyResist
+  let traitForResist
 
-  var tokenDetails = {
+  traits.forEach(trait => {
+    if(trait.trait_type == "Toy"){
+      traitForResist = trait.value
+    }
+  })
+
+  resist.forEach(elem => {
+    if(traitForResist===elem.item){
+      toyResist = elem.values
+    }
+  })
+
+  let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Baby Combat Bot #' + tokenId,
@@ -73,6 +94,7 @@ app.get('/bot/:token_id', function (req, res) {
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
     alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
+    resistance: toyResist
   };
 
   if (revealIsActive) {
@@ -98,7 +120,23 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toolPower});
 
-  var tokenDetails = {
+  let resist = dbResistanceShrooms.storage.Resistance
+  let toyResist
+  let traitForResist
+
+  traits.forEach(trait => {
+    if(trait.trait_type == "Tools"){
+      traitForResist = trait.value
+    }
+  })
+
+  resist.forEach(elem => {
+    if(traitForResist===elem.item){
+      toyResist = elem.values
+    }
+  })
+
+  let tokenDetails = {
     description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Battle Shroom #' + tokenId,
@@ -106,7 +144,8 @@ app.get('/shroom/:token_id', function (req, res) {
       'Ready To Battle': 'Soon'
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
+    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
+    resistance: toyResist
   };
 
   if (revealIsActive) {
@@ -119,6 +158,14 @@ app.get('/shroom/:token_id', function (req, res) {
 
   traits.pop();
   traits.pop();
+})
+
+app.get('/resistance_bots/', function (req, res) {
+  res.send(dbResistanceBots);
+})
+
+app.get('/resistance_shrooms/', function (req, res) {
+  res.send(dbResistanceShrooms);
 })
 
 app.get('/prize/:token_id', function (req, res) {
@@ -135,7 +182,7 @@ app.get('/prize/:token_id', function (req, res) {
     "first": "Hexagon Awesomness"
   }
 
-  var tokenDetails = {
+  let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
     image: 'https://ipfs.io/ipfs/' + ipfsPreviewHash,
     animation_url: 'https://gateway.pinata.cloud/ipfs/' + ipfsAnimationHash,

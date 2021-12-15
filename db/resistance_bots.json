@@ -1,0 +1,500 @@
+{
+    "Resistance": [
+        {
+            "item": "Drum",
+            "values":
+            [  
+                { 
+                    "item":"Lighting",
+                    "value": 45
+                },
+                { 
+                    "item":"Claw",
+                    "value": 45
+                },
+                { 
+                    "item":"Club",
+                    "value": 47
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 47
+                },
+                { 
+                    "item":"Spike",
+                    "value": 46
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 47
+                },
+                { 
+                    "item":"Saw",
+                    "value": 48
+                },
+                { 
+                    "item":"Drill",
+                    "value": 47
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 50
+                },
+                { 
+                    "item":"Axe",
+                    "value": 45
+                }
+            ]
+        },
+        {   "item": "Windmill",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 45
+                },
+                { 
+                    "item":"Claw",
+                    "value": 48
+                },
+                { 
+                    "item":"Club",
+                    "value": 45
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 47
+                },
+                { 
+                    "item":"Spike",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 46
+                },
+                { 
+                    "item":"Saw",
+                    "value": 46
+                },
+                { 
+                    "item":"Drill",
+                    "value": 48
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 48
+                },
+                { 
+                    "item":"Axe",
+                    "value": 46
+                }
+            ]
+        },
+        {   "item": "Icecream",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 46
+                },
+                { 
+                    "item":"Claw",
+                    "value": 45
+                },
+                { 
+                    "item":"Club",
+                    "value": 46
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 45
+                },
+                { 
+                    "item":"Spike",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 46
+                },
+                { 
+                    "item":"Saw",
+                    "value": 48
+                },
+                { 
+                    "item":"Drill",
+                    "value": 50
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                }
+            ]
+        },
+        {   "item": "Ducky",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 46
+                },
+                { 
+                    "item":"Claw",
+                    "value": 50
+                },
+                { 
+                    "item":"Club",
+                    "value": 45
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 45
+                },
+                { 
+                    "item":"Spike",
+                    "value": 46
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 47
+                },
+                { 
+                    "item":"Saw",
+                    "value": 46
+                },
+                { 
+                    "item":"Drill",
+                    "value": 48
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                }
+            ]
+        },
+        {   "item": "Bottle",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 47
+                },
+                { 
+                    "item":"Claw",
+                    "value": 47
+                },
+                { 
+                    "item":"Club",
+                    "value": 48
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 46
+                },
+                { 
+                    "item":"Spike",
+                    "value": 46
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 46
+                },
+                { 
+                    "item":"Saw",
+                    "value": 50
+                },
+                { 
+                    "item":"Drill",
+                    "value": 45
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 45
+                }
+            ]
+        },
+        {   "item": "Shovel",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 45
+                },
+                { 
+                    "item":"Claw",
+                    "value": 45
+                },
+                { 
+                    "item":"Club",
+                    "value": 46
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 47
+                },
+                { 
+                    "item":"Spike",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 48
+                },
+                { 
+                    "item":"Saw",
+                    "value": 45
+                },
+                { 
+                    "item":"Drill",
+                    "value": 47
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 50
+                }
+            ]
+        },
+        {   "item": "Shaker",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 48
+                },
+                { 
+                    "item":"Claw",
+                    "value": 46
+                },
+                { 
+                    "item":"Club",
+                    "value": 47
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 47
+                },
+                { 
+                    "item":"Spike",
+                    "value": 50
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 47
+                },
+                { 
+                    "item":"Saw",
+                    "value": 46
+                },
+                { 
+                    "item":"Drill",
+                    "value": 45
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 45
+                }
+            ]
+        },
+        {   "item": "Ball",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 47
+                },
+                { 
+                    "item":"Claw",
+                    "value": 45
+                },
+                { 
+                    "item":"Club",
+                    "value": 46
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 50
+                },
+                { 
+                    "item":"Spike",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 46
+                },
+                { 
+                    "item":"Saw",
+                    "value": 48
+                },
+                { 
+                    "item":"Drill",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 48
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                }
+            ]
+        },
+        {   "item": "Lollipop",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 45
+                },
+                { 
+                    "item":"Claw",
+                    "value": 46
+                },
+                { 
+                    "item":"Club",
+                    "value": 50
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 47
+                },
+                { 
+                    "item":"Spike",
+                    "value": 45
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 48
+                },
+                { 
+                    "item":"Saw",
+                    "value": 47
+                },
+                { 
+                    "item":"Drill",
+                    "value": 48
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 47
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                }
+            ]
+        },
+        {   "item": "Rocket",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 47
+                },
+                { 
+                    "item":"Claw",
+                    "value": 48
+                },
+                { 
+                    "item":"Club",
+                    "value": 47
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 47
+                },
+                { 
+                    "item":"Spike",
+                    "value": 49
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 46
+                },
+                { 
+                    "item":"Saw",
+                    "value": 47
+                },
+                { 
+                    "item":"Drill",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 49
+                }
+            ]
+        },
+        {   "item": "Balloons",
+            "values":
+            [
+                { 
+                    "item":"Lighting",
+                    "value": 50
+                },
+                { 
+                    "item":"Claw",
+                    "value": 46
+                },
+                { 
+                    "item":"Club",
+                    "value": 49
+                },
+                { 
+                    "item":"DoubleSpike",
+                    "value": 46
+                },
+                { 
+                    "item":"Spike",
+                    "value": 45
+                }, 
+                { 
+                    "item":"Blade",
+                    "value": 49
+                },
+                { 
+                    "item":"Saw",
+                    "value": 46
+                },
+                { 
+                    "item":"Drill",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,533 @@
+{
+    "Resistance": [
+        {
+            "item": "Beehive",
+            "values": [  
+                { 
+                    "item":"Tripple Hook",
+                    "value": 45
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 45
+                },
+                { 
+                    "item":"Sword",
+                    "value": 47
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 47
+                },
+                { 
+                    "item":"Long Knife",
+                    "value": 46
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 47
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 48
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 50
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 45
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 43
+                }
+            ]
+        },
+        {   "item": "Trap",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 45
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 48
+                },
+                { 
+                    "item":"Sword",
+                    "value": 45
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 47
+                },
+                { 
+                    "item":"Long",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 48
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 48
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 46
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 44
+                }
+            ]
+        },
+        {   "item": "Bomb",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 46
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 45
+                },
+                { 
+                    "item":"Sword",
+                    "value": 46
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 45
+                },
+                { 
+                    "item":"Long",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 48
+                },
+                { 
+                    "item":"Axe",
+                    "value": 50
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 47
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 46
+                }
+            ]
+        },
+        {   "item": "Poison",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 46
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 50
+                },
+                { 
+                    "item":"Sword",
+                    "value": 45
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 45
+                },
+                { 
+                    "item":"Long",
+                    "value": 46
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 47
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 48
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 47
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 44
+                }
+            ]
+        },
+        {   "item": "Dreamcatcher",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 47
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 47
+                },
+                { 
+                    "item":"Sword",
+                    "value": 48
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 46
+                },
+                { 
+                    "item":"Long",
+                    "value": 46
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 50
+                },
+                { 
+                    "item":"Axe",
+                    "value": 45
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 45
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 45
+                }
+            ]
+        },
+        {   "item": "Liquid",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 45
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 45
+                },
+                { 
+                    "item":"Sword",
+                    "value": 46
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 47
+                },
+                { 
+                    "item":"Long",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 48
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 45
+                },
+                { 
+                    "item":"Axe",
+                    "value": 47
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 50
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 45
+                }
+            ]
+        },
+        {   "item": "Torch",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 48
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 46
+                },
+                { 
+                    "item":"Sword",
+                    "value": 47
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 47
+                },
+                { 
+                    "item":"Long",
+                    "value": 50
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 47
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 45
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 45
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 43
+                }
+            ]
+        },
+        {   "item": "Net",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 47
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 45
+                },
+                { 
+                    "item":"Sword",
+                    "value": 46
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 50
+                },
+                { 
+                    "item":"Long",
+                    "value": 47
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 48
+                },
+                { 
+                    "item":"Axe",
+                    "value": 46
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 48
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 47
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 46
+                }
+            ]
+        },
+        {   "item": "Circle Shield",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 45
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 46
+                },
+                { 
+                    "item":"Sword",
+                    "value": 50
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 47
+                },
+                { 
+                    "item":"Long",
+                    "value": 45
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 48
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 47
+                },
+                { 
+                    "item":"Axe",
+                    "value": 48
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 47
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 47
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 48
+                }
+            ]
+        },
+        {   "item": "Doll",
+            "values": [
+                { 
+                    "item":"Tripple",
+                    "value": 47
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 48
+                },
+                { 
+                    "item":"Sword",
+                    "value": 47
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 47
+                },
+                { 
+                    "item":"Long",
+                    "value": 49
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 46
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 47
+                },
+                { 
+                    "item":"Axe",
+                    "value": 46
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 49
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 49
+                }
+            ]
+        },
+        {   "item": "Hexagon Shield",
+            "values": [ 
+                { 
+                    "item":"Tripple",
+                    "value": 50
+                },
+                { 
+                    "item":"Nunchucks",
+                    "value": 46
+                },
+                { 
+                    "item":"Sword",
+                    "value": 49
+                },
+                { 
+                    "item":"Scissors",
+                    "value": 46
+                },
+                { 
+                    "item":"Long",
+                    "value": 45
+                }, 
+                { 
+                    "item":"Mace",
+                    "value": 49
+                },
+                { 
+                    "item":"Hammer",
+                    "value": 46
+                },
+                { 
+                    "item":"Axe",
+                    "value": 46
+                },
+                { 
+                    "item":"Hoe",
+                    "value": 46
+                },
+                { 
+                    "item":"Shovel",
+                    "value": 47
+                },
+                { 
+                    "item":"Butcher",
+                    "value": 47
+                }
+            ]
+        }
+    ]
+}
