@@ -68,6 +68,22 @@ app.get('/bot/:token_id', function (req, res) {
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toyPower});
+  
+  let resist = dbResistanceBots.storage.Resistance
+  let toyResist
+  let traitForResist
+
+  traits.forEach(trait => {
+    if(trait.trait_type == "Toy"){
+      traitForResist = trait.value
+    }
+  })
+
+  resist.forEach(elem => {
+    if(traitForResist===elem.item){
+      toyResist = elem.values
+    }
+  })
 
   let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
@@ -78,6 +94,7 @@ app.get('/bot/:token_id', function (req, res) {
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
     alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
+    resistance: toyResist
   };
 
   if (revealIsActive) {
@@ -103,6 +120,22 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toolPower});
 
+  let resist = dbResistanceShrooms.storage.Resistance
+  let toyResist
+  let traitForResist
+
+  traits.forEach(trait => {
+    if(trait.trait_type == "Tools"){
+      traitForResist = trait.value
+    }
+  })
+
+  resist.forEach(elem => {
+    if(traitForResist===elem.item){
+      toyResist = elem.values
+    }
+  })
+
   let tokenDetails = {
     description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
@@ -111,7 +144,8 @@ app.get('/shroom/:token_id', function (req, res) {
       'Ready To Battle': 'Soon'
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
+    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
+    resistance: toyResist
   };
 
   if (revealIsActive) {
