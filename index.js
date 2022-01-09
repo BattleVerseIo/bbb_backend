@@ -25,10 +25,13 @@ const express = require('express'),
 
   PORT = process.env.PORT || 5000,
 
+  getHeads = require('./googleSheetsService'),
+
   app = express()
     .set('port', PORT)
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
+
 
 // Static public files
 //app.use(express.static(path.join(__dirname, 'public')))
@@ -39,7 +42,15 @@ app.get('/', function (req, res) {
   res.send('All_is up');
 })
 
+let BotsHeader 
+let ShroomsHeader = []
 
+async function getGoogleSheetData(){
+  await getHeads.one.then(result => BotsHeader = result);
+  await getHeads.two.then(result => ShroomsHeader = result);
+}
+
+getGoogleSheetData()
 
 function getStat(db, type, traits) {
   result = false;
@@ -73,15 +84,31 @@ app.get('/bot/:token_id', function (req, res) {
   let toyResist
   let traitForResist
 
+  let traitHead 
+  let botHeadPerks
+
   traits.forEach(trait => {
     if(trait.trait_type == "Toy"){
       traitForResist = trait.value
+    }
+  })
+  
+  traits.forEach(trait => {
+    if(trait.trait_type == "Head"){
+      traitHead = trait.value
     }
   })
 
   resist.forEach(elem => {
     if(traitForResist===elem.item){
       toyResist = elem.values
+    }
+  })
+
+  
+  BotsHeader.forEach(elem => {
+    if(traitHead === elem.head){
+      botHeadPerks = elem
     }
   })
 
@@ -94,7 +121,8 @@ app.get('/bot/:token_id', function (req, res) {
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
     alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
-    resistance: toyResist
+    resistance: toyResist,
+    header: botHeadPerks
   };
 
   if (revealIsActive) {
@@ -124,15 +152,30 @@ app.get('/shroom/:token_id', function (req, res) {
   let toyResist
   let traitForResist
 
+  let traitHead 
+  let ShroomHeadPerks
+
   traits.forEach(trait => {
     if(trait.trait_type == "Tools"){
       traitForResist = trait.value
+    }
+  })
+  
+  traits.forEach(trait => {
+    if(trait.trait_type == "Head"){
+      traitHead = trait.value
     }
   })
 
   resist.forEach(elem => {
     if(traitForResist===elem.item){
       toyResist = elem.values
+    }
+  })
+
+  ShroomsHeader.forEach(elem => {
+    if(traitHead === elem.head){
+      ShroomHeadPerks = elem
     }
   })
 
@@ -145,7 +188,9 @@ app.get('/shroom/:token_id', function (req, res) {
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
     alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
-    resistance: toyResist
+    resistance: toyResist,
+    header: ShroomHeadPerks
+
   };
 
   if (revealIsActive) {
@@ -160,13 +205,13 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.pop();
 })
 
-app.get('/resistance_bots/', function (req, res) {
-  res.send(dbResistanceBots);
-})
+// app.get('/resistance_bots/', function (req, res) {
+//   res.send(dbResistanceBots);
+// })
 
-app.get('/resistance_shrooms/', function (req, res) {
-  res.send(dbResistanceShrooms);
-})
+// app.get('/resistance_shrooms/', function (req, res) {
+//   res.send(dbResistanceShrooms);
+// })
 
 app.get('/prize/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
