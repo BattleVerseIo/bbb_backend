@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "coral-core-337710",
+  "private_key_id": "8c50e72e7ab11ac42e8eb7671291c5a84f2b6472",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdeMXosWZ/ViaF\nRLYTXcyQ1o71J4JoYaYnM6J4H6Wy/KHXUzg7zT0hbKn8m6GHX1EwHOPlWW+aVNg5\ni1U5q28bmal2BtMHJaENHqCTsz+7odndDo0N2M4jx1gN26wZQoBJM1iCo46dyju5\n2hBaq0LVJUcOp0T/ifOeny4XUmdLopBrOwlbYfQVIN9aWYrVTe1aN3KierNYXy4E\nVecaNuu9h+Ijn2oqKGqPenDif2F325gjq5oKOX8QTtd1y+oE19f6B5ug1sZsSm9n\ndvJky6ykOBruPBYYpKnUhAdna+24vruzGbdiJI7lhktmdG6/De9hoUeKJ3D7v8ym\nLRFAc63ZAgMBAAECggEAAm+58C2+fj3g/rLfdlE/NwZ608Q2ulK4dWbRHrauo6RR\nBLne5t34EipSPvxRdXy+DtaDmCrYFTU22z0Spn/GilDIVHEqlrO4WDGfHmnplIee\njVMKT6qJFfihniVF9mYXAgrvVaYeMMbOQcPj+OMpd47KGKnx4VpLEKs51VaLDpqB\nFMiMvXWOW38hP3tZSu67e/3Ly5cR9GxFZBvw9PP3415WN6KkRL/du884le2rqzRm\nPqWaLL5jy7YDrd+9cop3gI+PT+7zi/dFOei9gv/P3lMTgUEyWb5kf1In5YSplv1Y\nFBFN2CQKmv5UR4stAfhr3MdFsKw/4EaDWtjTlSePmQKBgQDTmDhwMc/gUxDuSkDA\n96cg+wfR8EqtFQsbNHPm1XpxoQYcetE2OX2FaZYT1mJpkFvAqVjTl8hWjabfvCfS\nwxN2ifhpGp5+NXDjILAlq1gLFidcmyXq4/ociyP7IwFHJSQ2RUElSLAr4u1LFwep\nc5c0wM5+MJdYDrjaE/BzFjNAiwKBgQC+hNbKI2/JxbnqWCa7Jtw3PAXFtgIwziCe\nE7ZOz90VzCqGC44Z1mCMXLBBfahuV5OsS2dFGO08LV7oGbl4IfpluQGYpfbFteLX\nNqCSN9rsQBFKnKEf3B2dhEmGCbQXQ5a3kNeVROhVHaDCPGACGh/sUEC+QVdoEUiu\nkS5fDa/TqwKBgH5kH9pMttpNZACi0/kwNWHK8UnjGgg3WLIAa/cHr6MuR0M9zbhx\nMNw/TMk+tvxNobD8tzV1JdMlu/dLIhKQOhEFqx/FKcVD0NGrFez6Y5YDvrFfb4/W\na/Ee3/hEWaAQvIe6aIaH28vrOkkvUYFTrY9yWCYiilSsPpjtbiSgry6vAoGBAKW9\n/vX/eiL4xtKeOaObHP1YVFU6EBHRYQLkdzd9EgMCiQPwTYEgxQGXKSbwYHUN70R2\nnLK6CrjNZ8FXj8h5FtMj7cWUrGg34c4EkhBiUywwWFqmhG2pGoKMMUJQcsHCZP3x\nHfuX5N8XVWFlEMkDXT5CWvCo+5dnYemsF8FNsObdAoGAMB1YkxJ6xpqwIPV/LF0q\n3T86SrscGhmzZg2yVyaS71RTpiQ5x8/e0zDFInrKh8oN+GFd39uMIyyB3yFrDntE\nO8455mvH+83xL/zhF2oAX23BxS/R/hWWlfPTzw2OseclnyDWpZD9iOMhCzahSLLJ\nOZAdgDWMSN7jBYmQZ9LJQuU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "google-sheets-and-nodejs@coral-core-337710.iam.gserviceaccount.com",
+  "client_id": "106513893227994293422",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/google-sheets-and-nodejs%40coral-core-337710.iam.gserviceaccount.com"
+}
