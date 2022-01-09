@@ -85,7 +85,6 @@ app.get('/bot/:token_id', function (req, res) {
   let traitForResist
 
   let traitHead 
-  let botHeadPerks
 
   traits.forEach(trait => {
     if(trait.trait_type == "Toy"){
@@ -108,7 +107,7 @@ app.get('/bot/:token_id', function (req, res) {
   
   BotsHeader.forEach(elem => {
     if(traitHead === elem.head){
-      botHeadPerks = elem
+      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
     }
   })
 
@@ -117,12 +116,11 @@ app.get('/bot/:token_id', function (req, res) {
     image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
     name: 'Baby Combat Bot #' + tokenId,
     attributes: {
-      'Ready To Battle': 'Soon'
+      'Ready To Battle': 'Soon',
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
     alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
-    resistance: toyResist,
-    header: botHeadPerks
+    resistance: toyResist
   };
 
   if (revealIsActive) {
@@ -153,7 +151,6 @@ app.get('/shroom/:token_id', function (req, res) {
   let traitForResist
 
   let traitHead 
-  let ShroomHeadPerks
 
   traits.forEach(trait => {
     if(trait.trait_type == "Tools"){
@@ -175,7 +172,7 @@ app.get('/shroom/:token_id', function (req, res) {
 
   ShroomsHeader.forEach(elem => {
     if(traitHead === elem.head){
-      ShroomHeadPerks = elem
+      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
     }
   })
 
@@ -188,9 +185,7 @@ app.get('/shroom/:token_id', function (req, res) {
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
     alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
-    resistance: toyResist,
-    header: ShroomHeadPerks
-
+    resistance: toyResist
   };
 
   if (revealIsActive) {
