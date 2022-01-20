@@ -25,7 +25,7 @@ const express = require('express'),
 
   PORT = process.env.PORT || 5000,
 
-  getHeads = require('./googleSheetsService'),
+  fs = require('fs'),
 
   app = express()
     .set('port', PORT)
@@ -42,15 +42,6 @@ app.get('/', function (req, res) {
   res.send('All_is up');
 })
 
-let BotsHeader 
-let ShroomsHeader = []
-
-async function getGoogleSheetData(){
-  await getHeads.one.then(result => BotsHeader = result);
-  await getHeads.two.then(result => ShroomsHeader = result);
-}
-
-getGoogleSheetData()
 
 function getStat(db, type, traits) {
   result = false;
@@ -76,6 +67,8 @@ app.get('/bot/:token_id', function (req, res) {
 
   weaponPower = getStat(dbStatsBots, "Weapon", traits);
   toyPower = getStat(dbStatsBots, "Toy", traits)
+  
+  console.log(dbStatsBots.get('Head'))
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toyPower});
@@ -95,6 +88,7 @@ app.get('/bot/:token_id', function (req, res) {
   traits.forEach(trait => {
     if(trait.trait_type == "Head"){
       traitHead = trait.value
+      console.log(trait)
     }
   })
 
@@ -104,12 +98,17 @@ app.get('/bot/:token_id', function (req, res) {
     }
   })
 
+  let dbBotsHead = dbStatsBots.get('Head')
   
-  BotsHeader.forEach(elem => {
+  dbBotsHead.forEach(elem => {
     if(traitHead === elem.head){
+      console.log(elem.head)
+      console.log(elem)
       traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
     }
   })
+
+
 
   let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
@@ -131,6 +130,7 @@ app.get('/bot/:token_id', function (req, res) {
 
   res.send(tokenDetails);
 
+  traits.pop();
   traits.pop();
   traits.pop();
 })
@@ -163,14 +163,16 @@ app.get('/shroom/:token_id', function (req, res) {
       traitHead = trait.value
     }
   })
-
+  
   resist.forEach(elem => {
     if(traitForResist===elem.item){
       toyResist = elem.values
     }
   })
 
-  ShroomsHeader.forEach(elem => {
+  let dbShroomHead =  dbStatsShrooms.get('Head')
+
+  dbShroomHead.forEach(elem => {
     if(traitHead === elem.head){
       traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
     }
@@ -196,6 +198,7 @@ app.get('/shroom/:token_id', function (req, res) {
 
   res.send(tokenDetails);
 
+  traits.pop();
   traits.pop();
   traits.pop();
 })
