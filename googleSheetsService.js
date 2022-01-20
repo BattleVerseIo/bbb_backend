@@ -106,7 +106,6 @@ async function getShroomsHeads(){
 
   console.log(shrooms)
   json = JSON.stringify(shrooms); //convert it back to json
-  console.log(json)
   fs.writeFile('./db/stats_shrooms.json', json, 'utf8', () => {}); // write it back 
 }
 
