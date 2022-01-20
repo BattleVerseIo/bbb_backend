@@ -11,7 +11,12 @@ const dbStatsBots = new JSONdb('./db/stats_bots.json'),
   dbStatsShrooms = new JSONdb('./db/stats_shrooms.json'),
   fs = require('fs')
   
+let BotsWeapon = []
+let BotsToy = []
 let BotsHeads = []
+
+let ShroomsWeapon = []
+let ShroomsToy = []
 let ShroomsHeads = []
 
 async function accessSpreadsheet() {
@@ -27,6 +32,22 @@ async function accessSpreadsheet() {
 
 async function getBotsHeads(){
   let sheet = await accessSpreadsheet()
+  await sheet.loadCells('A1:D12');
+  for(let x = 2; x<12; x++){
+    BotsWeapon.push({
+      item: ((sheet.getCell(x, 0).value).slice(2)).replace(' ', ''), 
+      force: sheet.getCell(x, 2).value, 
+    })
+  }
+
+  await sheet.loadCells('G1:J14');
+  for(let x = 2; x<13; x++){
+    BotsToy.push({
+      item: sheet.getCell(x, 6).value, 
+      force: sheet.getCell(x, 8).value, 
+    })
+  }
+
   await sheet.loadCells('M1:O11');
   for(let x = 2; x<10; x++){
     BotsHeads.push({
@@ -35,27 +56,37 @@ async function getBotsHeads(){
       force: sheet.getCell(x, 14).value
     })
   }
-  fs.readFile('./db/stats_bots.json', 'utf8', function readFileCallback(err, data){
-    if (err){
-        console.log(err);
-    } else {
-    obj = JSON.parse(data); //now it an object
-    
-    const head = {
+    const bots = {
+      Weapon: BotsWeapon, 
+      Tools: BotsToy, 
       Head: BotsHeads  
     };
-    const finalResult = Object.assign(obj, head);
-
-    console.log(finalResult)
-    json = JSON.stringify(finalResult); //convert it back to json
+    console.log(bots)
+    json = JSON.stringify(bots); //convert it back to json
     fs.writeFile('./db/stats_bots.json', json, 'utf8', () => {}); // write it back 
-  }});
 }
 
 getBotsHeads()
 
 async function getShroomsHeads(){
   let sheet = await accessSpreadsheet()
+
+  await sheet.loadCells('A18:D29');
+  for(let x = 19; x<29; x++){
+    ShroomsWeapon.push({
+      item: sheet.getCell(x, 0).value, 
+      force: sheet.getCell(x, 2).value, 
+    })
+  }
+
+  await sheet.loadCells('G19:J30');
+  for(let x = 19; x<30; x++){
+    ShroomsToy.push({
+      item: sheet.getCell(x, 6).value, 
+      force: sheet.getCell(x, 8).value, 
+    })
+  }
+
   await sheet.loadCells('M18:O30');
   for(let x = 19; x<30; x++){
     ShroomsHeads.push({
@@ -65,22 +96,18 @@ async function getShroomsHeads(){
     })
   }
 
-  fs.readFile('./db/stats_shrooms.json', 'utf8', function readFileCallback(err, data){
-    if (err){
-        console.log(err);
-    } else {
-    obj = JSON.parse(data); //now it an object
     
-    const head = {
-      Head: ShroomsHeads  
-    };
-    const finalResult = Object.assign(obj, head);
+  const shrooms = {
+    Weapon: ShroomsWeapon,  
+    Toy: ShroomsToy,  
+    Head: ShroomsHeads  
+  };
 
-    console.log(finalResult)
-    json = JSON.stringify(finalResult); //convert it back to json
-    console.log(json)
-    fs.writeFile('./db/stats_shrooms.json', json, 'utf8', () => {}); // write it back 
-  }});  
+
+  console.log(shrooms)
+  json = JSON.stringify(shrooms); //convert it back to json
+  console.log(json)
+  fs.writeFile('./db/stats_shrooms.json', json, 'utf8', () => {}); // write it back 
 }
 
 getShroomsHeads()

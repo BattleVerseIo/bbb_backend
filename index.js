@@ -25,8 +25,6 @@ const express = require('express'),
 
   PORT = process.env.PORT || 5000,
 
-  fs = require('fs'),
-
   app = express()
     .set('port', PORT)
     .set('views', path.join(__dirname, 'views'))
@@ -68,8 +66,6 @@ app.get('/bot/:token_id', function (req, res) {
   weaponPower = getStat(dbStatsBots, "Weapon", traits);
   toyPower = getStat(dbStatsBots, "Toy", traits)
   
-  console.log(dbStatsBots.get('Head'))
-
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toyPower});
   
@@ -88,7 +84,6 @@ app.get('/bot/:token_id', function (req, res) {
   traits.forEach(trait => {
     if(trait.trait_type == "Head"){
       traitHead = trait.value
-      console.log(trait)
     }
   })
 
@@ -102,8 +97,6 @@ app.get('/bot/:token_id', function (req, res) {
   
   dbBotsHead.forEach(elem => {
     if(traitHead === elem.head){
-      console.log(elem.head)
-      console.log(elem)
       traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
     }
   })
