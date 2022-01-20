@@ -36,7 +36,7 @@ async function getBotsHeads(){
   for(let x = 2; x<12; x++){
     BotsWeapon.push({
       item: ((sheet.getCell(x, 0).value).slice(2)).replace(' ', ''), 
-      force: sheet.getCell(x, 2).value, 
+      power: sheet.getCell(x, 2).value, 
     })
   }
 
@@ -44,7 +44,7 @@ async function getBotsHeads(){
   for(let x = 2; x<13; x++){
     BotsToy.push({
       item: sheet.getCell(x, 6).value, 
-      force: sheet.getCell(x, 8).value, 
+      power: sheet.getCell(x, 8).value, 
     })
   }
 
@@ -58,7 +58,7 @@ async function getBotsHeads(){
   }
     const bots = {
       Weapon: BotsWeapon, 
-      Tools: BotsToy, 
+      Toy: BotsToy, 
       Head: BotsHeads  
     };
     console.log(bots)
@@ -75,7 +75,7 @@ async function getShroomsHeads(){
   for(let x = 19; x<29; x++){
     ShroomsWeapon.push({
       item: sheet.getCell(x, 0).value, 
-      force: sheet.getCell(x, 2).value, 
+      power: sheet.getCell(x, 2).value, 
     })
   }
 
@@ -83,7 +83,7 @@ async function getShroomsHeads(){
   for(let x = 19; x<30; x++){
     ShroomsToy.push({
       item: sheet.getCell(x, 6).value, 
-      force: sheet.getCell(x, 8).value, 
+      power: sheet.getCell(x, 8).value, 
     })
   }
 
@@ -99,7 +99,7 @@ async function getShroomsHeads(){
     
   const shrooms = {
     Weapon: ShroomsWeapon,  
-    Toy: ShroomsToy,  
+    Tools: ShroomsToy,  
     Head: ShroomsHeads  
   };
 
