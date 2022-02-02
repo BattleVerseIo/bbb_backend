@@ -19,6 +19,7 @@ const express = require('express'),
   dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json'),
   dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json'),
   dbWinnerCategories = new JSONdb('./db/winner_categories.json'),
+  dbWalletAddresses = new JSONdb('./db/wallet_addresses.json'),
 
   revealIsActive = true,
   placeholderIpfsHash = 'QmchQaQQ9CMwV3nDLBvcgqn1td3mAd4gf3hzqwPB3Q9hyP',
@@ -30,11 +31,11 @@ const express = require('express'),
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
 
-
 // Static public files
 //app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(cors());
+app.use(express.json())
 
 app.get('/', function (req, res) {
   res.send('All_is up');
@@ -229,6 +230,27 @@ app.get('/prize/:token_id', function (req, res) {
   };
 
   res.send(tokenDetails);
+})
+
+app.post('/wallet_address', (req, res) => {
+  // console.log(req)
+  // console.log(res)
+  console.log(req.body.wallet)
+  // dbWalletAddresses.data.push({ id: 1, wallet: req.body.wallet })
+  // dbWalletAddresses.write()
+  let wallets = dbWalletAddresses.get('wallets');
+  let checkIfExist
+  console.log(wallets)
+  if (wallets.filter(e => e.address === req.body.wallet).length > 0) {
+    checkIfExist = true
+  }
+  if(!checkIfExist){
+    wallets.push({"address": req.body.wallet})
+  }
+  dbWalletAddresses.set('wallets', wallets);
+  res.writeHead(200, {'Content-Type': 'text/html'})
+  res.end('thanks')
+  // 
 })
 
 app.listen(app.get('port'), function () {

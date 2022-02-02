@@ -71,8 +71,8 @@ getBotsHeads()
 async function getShroomsHeads(){
   let sheet = await accessSpreadsheet()
 
-  await sheet.loadCells('A18:D29');
-  for(let x = 19; x<29; x++){
+  await sheet.loadCells('A18:D30');
+  for(let x = 19; x<30; x++){
     ShroomsWeapon.push({
       item: sheet.getCell(x, 0).value, 
       power: sheet.getCell(x, 2).value, 
