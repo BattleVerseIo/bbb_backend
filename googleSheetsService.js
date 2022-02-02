@@ -36,7 +36,9 @@ async function getBotsHeads(){
   for(let x = 2; x<12; x++){
     BotsWeapon.push({
       item: ((sheet.getCell(x, 0).value).slice(2)).replace(' ', ''), 
+      rarity: sheet.getCell(x, 1).value, 
       power: sheet.getCell(x, 2).value, 
+      quantity: sheet.getCell(x, 3).value, 
     })
   }
 
@@ -44,7 +46,9 @@ async function getBotsHeads(){
   for(let x = 2; x<13; x++){
     BotsToy.push({
       item: sheet.getCell(x, 6).value, 
+      rarity: sheet.getCell(x, 7).value, 
       power: sheet.getCell(x, 8).value, 
+      quantity: sheet.getCell(x, 9).value, 
     })
   }
 
@@ -75,6 +79,7 @@ async function getShroomsHeads(){
   for(let x = 19; x<30; x++){
     ShroomsWeapon.push({
       item: sheet.getCell(x, 0).value, 
+      rarity: sheet.getCell(x, 1).value, 
       power: sheet.getCell(x, 2).value, 
     })
   }
@@ -83,6 +88,7 @@ async function getShroomsHeads(){
   for(let x = 19; x<30; x++){
     ShroomsToy.push({
       item: sheet.getCell(x, 6).value, 
+      rarity: sheet.getCell(x, 7).value, 
       power: sheet.getCell(x, 8).value, 
     })
   }
