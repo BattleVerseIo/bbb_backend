@@ -253,6 +253,11 @@ app.post('/wallet_address', (req, res) => {
   // 
 })
 
+app.get('/wallet_address_list', (req, res) => {
+  let wallets = dbWalletAddresses.get('wallets');
+  res.send(wallets);
+})
+
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
 })
