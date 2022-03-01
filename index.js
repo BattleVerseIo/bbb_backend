@@ -1,6 +1,9 @@
 const express = require('express'),
   path = require('path'),
   cors = require('cors'),
+  Web3 = require('web3'),
+  mongoose = require('mongoose'),
+  ethers = require('ethers'),
 
   JSONdb = require('simple-json-db'),
 
@@ -31,8 +34,32 @@ const express = require('express'),
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
 
+
 // Static public files
 //app.use(express.static(path.join(__dirname, 'public')))
+mongoose.connect("mongodb+srv://VictorSoltan:Password1!@cluster0.dc7dp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (err) => {
+  if(!err) console.log('db connected')
+  else console.log('db error')
+})
+
+const User = new mongoose.Schema({
+  wallets: String,
+  name: String,
+  avatar: String,
+  description: String,
+  email: String,
+  Discord: String
+})
+
+const NewModel = new mongoose.model("Users", User)
+
+// async function check(){
+
+// }
+
+// check()
+
+
 
 app.use(cors());
 app.use(express.json())
@@ -232,30 +259,56 @@ app.get('/prize/:token_id', function (req, res) {
   res.send(tokenDetails);
 })
 
-app.post('/wallet_address', (req, res) => {
-  // console.log(req)
-  // console.log(res)
-  console.log(req.body.wallet)
-  // dbWalletAddresses.data.push({ id: 1, wallet: req.body.wallet })
-  // dbWalletAddresses.write()
-  let wallets = dbWalletAddresses.get('wallets');
-  let checkIfExist
-  console.log(wallets)
-  if (wallets.filter(e => e.address === req.body.wallet).length > 0) {
-    checkIfExist = true
-  }
-  if(!checkIfExist){
-    wallets.push({"address": req.body.wallet})
-  }
-  dbWalletAddresses.set('wallets', wallets);
-  res.writeHead(200, {'Content-Type': 'text/html'})
-  res.end('thanks')
-  // 
+let messageHash
+
+app.get('/verification', (req, res) => {
+  messageHash = Web3.utils.sha3((Math.random() + 1).toString(36).substring(7))
+  res.send(messageHash);
 })
 
-app.get('/wallet_address_list', (req, res) => {
-  let wallets = dbWalletAddresses.get('wallets');
-  res.send(wallets);
+app.get('/get_user', async(req, res) => {
+  const user = await NewModel.findOne({ wallets: req.query.account });
+  if (user) res.send(user)
+  else res.send('No such user')
+})
+
+app.post('/verif_accept', async(req, res) => {
+
+  const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
+  if(req.body.account === signerAddr.toLowerCase()){
+    
+    const user = await NewModel.findOne({ wallets: req.body.account });
+    if (user) {
+      console.log(user)
+    }else{
+      console.log(req.body.account)
+      const data = NewModel({
+        wallets: req.body.account, 
+        name: req.body.name, 
+        avatar: req.body.avatar,
+        description: req.body.description,
+        email: req.body.email,
+        Discord: req.body.discord
+      })
+      data.save()
+    }
+    console.log('passed')    
+
+  }else res.end("wallet don't mutch")
+})
+
+app.post('/change_user_data', async(req, res) => {
+  const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
+  if(req.body.account === signerAddr.toLowerCase()){
+    const user = await NewModel.findOne({ wallets: req.body.account });
+    if (user) {
+      user.name = req.body.name
+      user.save()
+      res.end('data successfully updated')
+    }else{
+      res.end('no such user')
+    }
+  }else res.end("wallet don't mutch")
 })
 
 app.listen(app.get('port'), function () {

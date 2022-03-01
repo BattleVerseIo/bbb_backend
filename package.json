@@ -13,17 +13,21 @@
     "@pinata/sdk": "^1.1.23",
     "cors": "^2.8.5",
     "ejs": "^2.6.1",
+    "ethers": "^5.5.4",
     "express": "^4.16.4",
     "google-spreadsheet": "^3.2.0",
     "googleapis": "39",
     "moment": "^2.22.2",
-    "simple-json-db": "^1.2.3"
+    "mongodb": "^4.4.0",
+    "mongoose": "^6.2.4",
+    "simple-json-db": "^1.2.3",
+    "web3": "^1.7.0"
   },
   "devDependencies": {
     "request": "^2.81.0",
     "tape": "^4.7.0"
   },
   "engines": {
-    "node": "12.22.5"
+    "node": "16.14.0"
   }
 }
