@@ -48,10 +48,10 @@ const User = new mongoose.Schema({
   avatar: String,
   description: String,
   email: String,
-  Discord: String
+  discord: String
 })
 
-const NewModel = new mongoose.model("Users", User)
+const NewModel = new mongoose.model("Gamers", User)
 
 // async function check(){
 
@@ -272,7 +272,7 @@ app.get('/get_user', async(req, res) => {
   else res.send('No such user')
 })
 
-app.post('/verif_accept', async(req, res) => {
+app.post('/create_user', async(req, res) => {
 
   const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
   if(req.body.account === signerAddr.toLowerCase()){
@@ -288,28 +288,51 @@ app.post('/verif_accept', async(req, res) => {
         avatar: req.body.avatar,
         description: req.body.description,
         email: req.body.email,
-        Discord: req.body.discord
+        discord: req.body.discord
       })
       data.save()
+      res.end("new user successfully created")
     }
     console.log('passed')    
 
-  }else res.end("wallet don't mutch")
+  }else{
+    console.log('not passed')    
+    res.end("wallet doesn't mutch")
+  } 
 })
 
 app.post('/change_user_data', async(req, res) => {
-  const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
-  if(req.body.account === signerAddr.toLowerCase()){
-    const user = await NewModel.findOne({ wallets: req.body.account });
-    if (user) {
-      user.name = req.body.name
-      user.save()
-      res.end('data successfully updated')
-    }else{
-      res.end('no such user')
-    }
-  }else res.end("wallet don't mutch")
+  try {
+    const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
+    if(req.body.account === signerAddr.toLowerCase()){
+      const user = await NewModel.findOne({ wallets: req.body.account });
+      if (user) {
+        user.name = req.body.name
+        if(req.body.avatar!==''){
+          user.avatar = req.body.avatar
+        }
+        user.description = req.body.description
+        user.email = req.body.email
+        user.discord = req.body.discord      
+        user.save()
+        res.end('data successfully updated')
+      }else{
+        res.end('no such user')
+      }
+    }else {
+      res.end("wallet don't mutch")
+    }    
+  }catch (err){
+    console.log(err)
+  }
 })
+
+app.use(function onError(err, req, res, next) {
+  // The error id is attached to `res.sentry` to be returned
+  // and optionally displayed to the user for support.
+  res.statusCode = 500;
+  res.end(res.sentry + "");
+});
 
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
