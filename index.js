@@ -74,8 +74,6 @@ app.get('/bot/:token_id', function (req, res) {
 
   let traitHead 
 
-  let traitHealth = -50
-
   traits.forEach(trait => {
     if(trait.trait_type == "Toy"){
       traitForResist = trait.value
@@ -102,19 +100,19 @@ app.get('/bot/:token_id', function (req, res) {
     }
   })
 
-  traits.forEach(trait => {
-    if(trait.trait_type === "Attack"){
-      traitHealth += trait.value
-    }
-    if(trait.trait_type === "Defence"){
-      traitHealth += trait.value
-    }
-    if(trait.trait_type === "Trick"){
-      traitHealth += trait.value
-    }        
-  })
+  // traits.forEach(trait => {
+  //   if(trait.trait_type === "Attack"){
+  //     traitHealth += trait.value
+  //   }
+  //   if(trait.trait_type === "Defence"){
+  //     traitHealth += trait.value
+  //   }
+  //   if(trait.trait_type === "Trick"){
+  //     traitHealth += trait.value
+  //   }        
+  // })
 
-  traits.push({"trait_type": "Health", "value": traitHealth});
+  traits.push({"trait_type": "Health", "value": 100});
 
   let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
@@ -158,7 +156,6 @@ app.get('/shroom/:token_id', function (req, res) {
   let traitForResist
 
   let traitHead 
-  let traitHealth = -50
 
   traits.forEach(trait => {
     if(trait.trait_type == "Tools"){
@@ -186,19 +183,19 @@ app.get('/shroom/:token_id', function (req, res) {
     }
   })
 
-  traits.forEach(trait => {
-    if(trait.trait_type === "Attack"){
-      traitHealth += trait.value
-    }
-    if(trait.trait_type === "Defence"){
-      traitHealth += trait.value
-    }
-    if(trait.trait_type === "Trick"){
-      traitHealth += trait.value
-    }        
-  })
+  // traits.forEach(trait => {
+  //   if(trait.trait_type === "Attack"){
+  //     traitHealth += trait.value
+  //   }
+  //   if(trait.trait_type === "Defence"){
+  //     traitHealth += trait.value
+  //   }
+  //   if(trait.trait_type === "Trick"){
+  //     traitHealth += trait.value
+  //   }        
+  // })
 
-  traits.push({"trait_type": "Health", "value": traitHealth});
+  traits.push({"trait_type": "Health", "value": 100});
 
   let tokenDetails = {
     description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
