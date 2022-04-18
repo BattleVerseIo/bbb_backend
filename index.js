@@ -1,9 +1,6 @@
 const express = require('express'),
   path = require('path'),
   cors = require('cors'),
-  Web3 = require('web3'),
-  mongoose = require('mongoose'),
-  ethers = require('ethers'),
 
   JSONdb = require('simple-json-db'),
 
@@ -35,32 +32,6 @@ const express = require('express'),
     .set('view engine', 'ejs')
 
 
-// Static public files
-//app.use(express.static(path.join(__dirname, 'public')))
-mongoose.connect("mongodb+srv://VictorSoltan:Password1!@cluster0.dc7dp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (err) => {
-  if(!err) console.log('db connected')
-  else console.log('db error')
-})
-
-const User = new mongoose.Schema({
-  wallets: String,
-  name: String,
-  avatar: String,
-  description: String,
-  email: String,
-  discord: String
-})
-
-const NewModel = new mongoose.model("Gamers", User)
-
-// async function check(){
-
-// }
-
-// check()
-
-
-
 app.use(cors());
 app.use(express.json())
 
@@ -83,7 +54,7 @@ function getStat(db, type, traits) {
       result = foundStat;
   });
 
-  return result ? result.power : -1;
+  return result ? result.force : -1;
 }
 
 app.get('/bot/:token_id', function (req, res) {
@@ -288,74 +259,6 @@ app.get('/prize/:token_id', function (req, res) {
   };
 
   res.send(tokenDetails);
-})
-
-let messageHash
-
-app.get('/verification', (req, res) => {
-  messageHash = Web3.utils.sha3((Math.random() + 1).toString(36).substring(7))
-  res.send(messageHash);
-})
-
-app.get('/get_user', async(req, res) => {
-  const user = await NewModel.findOne({ wallets: req.query.account });
-  if (user) res.send(user)
-  else res.send('No such user')
-})
-
-app.post('/create_user', async(req, res) => {
-
-  const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
-  if(req.body.account === signerAddr.toLowerCase()){
-    
-    const user = await NewModel.findOne({ wallets: req.body.account });
-    if (user) {
-      console.log(user)
-    }else{
-      console.log(req.body.account)
-      const data = NewModel({
-        wallets: req.body.account, 
-        name: req.body.name, 
-        avatar: req.body.avatar,
-        description: req.body.description,
-        email: req.body.email,
-        discord: req.body.discord
-      })
-      data.save()
-      res.end("new user successfully created")
-    }
-    console.log('passed')    
-
-  }else{
-    console.log('not passed')    
-    res.end("wallet doesn't mutch")
-  } 
-})
-
-app.post('/change_user_data', async(req, res) => {
-  try {
-    const signerAddr = await ethers.utils.verifyMessage(messageHash, req.body.signature)
-    if(req.body.account === signerAddr.toLowerCase()){
-      const user = await NewModel.findOne({ wallets: req.body.account });
-      if (user) {
-        user.name = req.body.name
-        if(req.body.avatar!==''){
-          user.avatar = req.body.avatar
-        }
-        user.description = req.body.description
-        user.email = req.body.email
-        user.discord = req.body.discord      
-        user.save()
-        res.end('data successfully updated')
-      }else{
-        res.end('no such user')
-      }
-    }else {
-      res.end("wallet don't mutch")
-    }    
-  }catch (err){
-    console.log(err)
-  }
 })
 
 app.use(function onError(err, req, res, next) {

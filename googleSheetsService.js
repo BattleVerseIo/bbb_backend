@@ -27,7 +27,7 @@ async function accessSpreadsheet() {
   
   await doc.loadInfo(); // loads document properties and worksheets
 
-  return doc.sheetsByIndex[0];
+  return doc.sheetsByIndex[1];
 }
 
 async function getBotsHeads(){
@@ -37,7 +37,7 @@ async function getBotsHeads(){
     BotsWeapon.push({
       item: ((sheet.getCell(x, 0).value).slice(2)).replace(' ', ''), 
       rarity: sheet.getCell(x, 1).value, 
-      power: sheet.getCell(x, 2).value, 
+      force: sheet.getCell(x, 2).value, 
       quantity: sheet.getCell(x, 3).value, 
     })
   }
@@ -47,7 +47,7 @@ async function getBotsHeads(){
     BotsToy.push({
       item: sheet.getCell(x, 6).value, 
       rarity: sheet.getCell(x, 7).value, 
-      power: sheet.getCell(x, 8).value, 
+      force: sheet.getCell(x, 8).value, 
       quantity: sheet.getCell(x, 9).value, 
     })
   }
@@ -80,7 +80,7 @@ async function getShroomsHeads(){
     ShroomsWeapon.push({
       item: sheet.getCell(x, 0).value, 
       rarity: sheet.getCell(x, 1).value, 
-      power: sheet.getCell(x, 2).value, 
+      force: sheet.getCell(x, 2).value, 
     })
   }
 
@@ -89,7 +89,7 @@ async function getShroomsHeads(){
     ShroomsToy.push({
       item: sheet.getCell(x, 6).value, 
       rarity: sheet.getCell(x, 7).value, 
-      power: sheet.getCell(x, 8).value, 
+      force: sheet.getCell(x, 8).value, 
     })
   }
 
