@@ -1,0 +1,112 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js-master
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+   
+    -
+        name: Checkout
+        uses: actions/checkout@v3
+    -
+        # we need qemu and buildx so we can build multiple platforms later
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+    -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+    -
+        # This makes image builds fast!      
+        name: Cache Docker layers
+        uses: actions/cache@v2.1.7
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+    -
+        name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+    -
+        name: Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@v3.6.2
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ghcr.io/BattleVerseIO/bbb
+          flavor: |
+            latest=false
+          tags: |
+            type=raw,value=master
+
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm i
+    - run: npm run build
+   
+    -
+        # this will build the images, once per platform, 
+        # then push to both Docker Hub and GHCR
+        name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+#          file: ./docker/all.Dockerfile
+          # platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64
+          builder: ${{ steps.buildx.outputs.name }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+          # don't push during a pull_request, only build
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+#    -
+#        name: Telegram send message
+#        run: |
+#          curl --silent --output /dev/null -X POST -H 'Content-Type: application/json' -d '{"chat_id": "-1001650883934", "text": "[GameFront alpha] Build Done 🔥 [Author: ${{ github.event.head_commit.author.name }}] [Reason: ${{ github.event.head_commit.message }}]", "disable_notification": false}' https://api.telegram.org/bot5247030614:AAHVR7WI65342D9VSip50KQ9jpVFvvvjQSg/sendMessage
+#
+#    -
+#       name: Docker pull to host & update
+#       run: |
+#          sudo sh -c "/root/GameBack_alpha/update_front.sh"
+          
+    -
+        # Temp fix
+        # https://github.com/docker/build-push-action/issues/252
+        # https://github.com/moby/buildkit/issues/1896
+        name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+    -
+        name: Show image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}        
