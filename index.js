@@ -65,8 +65,8 @@ app.get('/bot/:token_id', function (req, res) {
   weaponPower = getStat(dbStatsBots, "Weapon", traits);
   toyPower = getStat(dbStatsBots, "Toy", traits)
   
-  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
-  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toyPower});
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toyPower)});
   
   let resist = dbResistanceBots.storage.Resistance
   let toyResist
@@ -96,7 +96,7 @@ app.get('/bot/:token_id', function (req, res) {
   
   dbBotsHead.forEach(elem => {
     if(traitHead === elem.head){
-      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
+      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(elem.force)});
     }
   })
 
@@ -148,8 +148,8 @@ app.get('/shroom/:token_id', function (req, res) {
   weaponPower = getStat(dbStatsShrooms, "Weapon", traits);
   toolPower = getStat(dbStatsShrooms, "Tools", traits)
 
-  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": weaponPower});
-  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": toolPower});
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
 
   let resist = dbResistanceShrooms.storage.Resistance
   let toyResist
@@ -179,7 +179,7 @@ app.get('/shroom/:token_id', function (req, res) {
 
   dbShroomHead.forEach(elem => {
     if(traitHead === elem.head){
-      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": elem.force});
+      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(elem.force)});
     }
   })
 
