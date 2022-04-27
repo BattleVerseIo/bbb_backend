@@ -89,15 +89,15 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
-#    -
-#        name: Telegram send message
-#        run: |
-#          curl --silent --output /dev/null -X POST -H 'Content-Type: application/json' -d '{"chat_id": "-1001650883934", "text": "[GameFront alpha] Build Done 🔥 [Author: ${{ github.event.head_commit.author.name }}] [Reason: ${{ github.event.head_commit.message }}]", "disable_notification": false}' https://api.telegram.org/bot5247030614:AAHVR7WI65342D9VSip50KQ9jpVFvvvjQSg/sendMessage
-#
-#    -
-#       name: Docker pull to host & update
-#       run: |
-#          sudo sh -c "/root/GameBack_alpha/update_front.sh"
+    -
+        name: Telegram send message
+        run: |
+          curl --silent --output /dev/null -X POST -H 'Content-Type: application/json' -d '{"chat_id": "-1001650883934", "text": "[BBB_backend master] Build Done 🔥 [Author: ${{ github.event.head_commit.author.name }}] [Reason: ${{ github.event.head_commit.message }}]", "disable_notification": false}' https://api.telegram.org/bot5247030614:AAHVR7WI65342D9VSip50KQ9jpVFvvvjQSg/sendMessage
+
+    -
+       name: Docker pull to host & update
+       run: |
+          sudo sh -c "/root/bbb_backend/update_back.sh"
           
     -
         # Temp fix
