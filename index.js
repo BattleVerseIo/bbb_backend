@@ -17,7 +17,6 @@ const express = require('express'),
 
   dbResistanceBots = new JSONdb('./db/resistance_bots.json'),
   dbResistanceShrooms = new JSONdb('./db/resistance_shrooms.json'),
-  dbResistanceDummies = new JSONdb('./db/resistance_dummies.json'),
 
   dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json'),
   dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json'),
@@ -226,7 +225,7 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.pop();
 })
 
-app.get('/dummie/:token_id', function (req, res) {
+app.get('/dummy/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
   traits = dbTraitsDummies.get(tokenId);
@@ -237,11 +236,8 @@ app.get('/dummie/:token_id', function (req, res) {
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
 
-  let resist = dbResistanceDummies.storage.Resistance
-  let toyResist
-  let traitForResist
-
-  let traitHead 
+  let traitForResist,
+    traitHead 
 
   traits.forEach(trait => {
     if(trait.trait_type == "Tools"){
@@ -255,11 +251,6 @@ app.get('/dummie/:token_id', function (req, res) {
     }
   })
   
-  resist.forEach(elem => {
-    if(traitForResist===elem.item){
-      toyResist = elem.values
-    }
-  })
 
   let dbDummieHead =  dbStatsDummies.get('Head')
 
@@ -291,8 +282,7 @@ app.get('/dummie/:token_id', function (req, res) {
       'Ready To Battle': 'Soon'
     },
     alpha_125: '',
-    alpha_500: '',
-    resistance: toyResist
+    alpha_500: ''
   };
 
   if (revealIsActive) {
