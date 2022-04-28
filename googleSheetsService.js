@@ -59,7 +59,7 @@ async function getBotsHeads(){
   await sheet.loadCells('M1:O11');
   for(let x = 2; x<10; x++){
     BotsHeads.push({
-      head: sheet.getCell(x, 12).value, 
+      item: sheet.getCell(x, 12).value, 
       rarity: sheet.getCell(x, 13).value, 
       force: sheet.getCell(x, 14).value
     })
@@ -100,7 +100,7 @@ async function getShroomsHeads(){
   await sheet.loadCells('M18:O30');
   for(let x = 19; x<30; x++){
     ShroomsHeads.push({
-      head: sheet.getCell(x, 12).value, 
+      item: sheet.getCell(x, 12).value, 
       rarity: sheet.getCell(x, 13).value, 
       force: sheet.getCell(x, 14).value
     })
@@ -143,7 +143,7 @@ async function getDummiesHeads(){
   await sheet.loadCells('M36:O40');
   for(let x = 19; x<30; x++){
     DummiesHeads.push({
-      head: sheet.getCell(x, 12).value, 
+      item: sheet.getCell(x, 12).value, 
       force: sheet.getCell(x, 14).value
     })
   }

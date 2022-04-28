@@ -48,12 +48,10 @@ function getStat(db, type, traits) {
 
   traits.forEach(trait => {
     foundStat = statsAll.find(function(stat, index){
-      if(trait.trait_type == type && stat.item == trait.value)
-        return true;
+      if(trait.trait_type == type && stat.item == trait.value) return true;
     });
 
-    if(typeof foundStat !== 'undefined')
-      result = foundStat;
+    if(typeof foundStat !== 'undefined') result = foundStat;
   });
 
   return result ? result.force : -1;
@@ -66,15 +64,15 @@ app.get('/bot/:token_id', function (req, res) {
 
   weaponPower = getStat(dbStatsBots, "Weapon", traits);
   toyPower = getStat(dbStatsBots, "Toy", traits)
+  trickPower = getStat(dbStatsBots, "Head", traits)
   
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toyPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(trickPower)});
   
-  let resist = dbResistanceBots.storage.Resistance
-  let toyResist
-  let traitForResist
-
-  let traitHead 
+  let resist = dbResistanceBots.storage.Resistance,
+    toyResist,
+    traitForResist
 
   traits.forEach(trait => {
     if(trait.trait_type == "Toy"){
@@ -82,25 +80,12 @@ app.get('/bot/:token_id', function (req, res) {
     }
   })
   
-  traits.forEach(trait => {
-    if(trait.trait_type == "Head"){
-      traitHead = trait.value
-    }
-  })
-
   resist.forEach(elem => {
     if(traitForResist===elem.item){
       toyResist = elem.values
     }
   })
 
-  let dbBotsHead = dbStatsBots.get('Head')
-  
-  dbBotsHead.forEach(elem => {
-    if(traitHead === elem.head){
-      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(elem.force)});
-    }
-  })
 
   // traits.forEach(trait => {
   //   if(trait.trait_type === "Attack"){
@@ -149,15 +134,15 @@ app.get('/shroom/:token_id', function (req, res) {
 
   weaponPower = getStat(dbStatsShrooms, "Weapon", traits);
   toolPower = getStat(dbStatsShrooms, "Tools", traits)
+  toolPower = getStat(dbStatsShrooms, "Head", traits)
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(toolPower)});
 
-  let resist = dbResistanceShrooms.storage.Resistance
-  let toyResist
-  let traitForResist
-
-  let traitHead 
+  let resist = dbResistanceShrooms.storage.Resistance,
+    toyResist,
+    traitForResist
 
   traits.forEach(trait => {
     if(trait.trait_type == "Tools"){
@@ -165,11 +150,6 @@ app.get('/shroom/:token_id', function (req, res) {
     }
   })
   
-  traits.forEach(trait => {
-    if(trait.trait_type == "Head"){
-      traitHead = trait.value
-    }
-  })
   
   resist.forEach(elem => {
     if(traitForResist===elem.item){
@@ -177,13 +157,6 @@ app.get('/shroom/:token_id', function (req, res) {
     }
   })
 
-  let dbShroomHead =  dbStatsShrooms.get('Head')
-
-  dbShroomHead.forEach(elem => {
-    if(traitHead === elem.head){
-      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(elem.force)});
-    }
-  })
 
   // traits.forEach(trait => {
   //   if(trait.trait_type === "Attack"){
@@ -232,31 +205,17 @@ app.get('/dummy/:token_id', function (req, res) {
 
   weaponPower = getStat(dbStatsDummies, "Weapon", traits);
   toolPower = getStat(dbStatsDummies, "Tools", traits)
+  trickPower = getStat(dbStatsDummies, "Head", traits)
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(trickPower)});
 
-  let traitForResist,
-    traitHead 
+  let traitForResist
 
   traits.forEach(trait => {
     if(trait.trait_type == "Tools"){
       traitForResist = trait.value
-    }
-  })
-  
-  traits.forEach(trait => {
-    if(trait.trait_type == "Head"){
-      traitHead = trait.value
-    }
-  })
-  
-
-  let dbDummieHead =  dbStatsDummies.get('Head')
-
-  dbDummieHead.forEach(elem => {
-    if(traitHead === elem.head){
-      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(elem.force)});
     }
   })
 
