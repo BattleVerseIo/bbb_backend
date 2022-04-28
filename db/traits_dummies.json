@@ -1,0 +1,332 @@
+{
+    "0": [
+        {
+            "trait_type": "Head",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Pouch"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 1"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Orange"
+        }
+    ],
+    "1": [
+        {
+            "trait_type": "Head",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Chain"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 2"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Orange"
+        }
+    ],
+    "2": [
+        {
+            "trait_type": "Head",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Pouch"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 3"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Orange"
+        }
+    ],
+    "3": [
+        {
+            "trait_type": "Head",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Jacket"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 1"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Red"
+        }
+    ],
+    "4": [
+        {
+            "trait_type": "Head",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Pouch"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 1"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Orange"
+        }
+    ],
+    "5": [
+        {
+            "trait_type": "Head",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Shield"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 2"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Red"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Purple"
+        }
+    ],
+    "6": [
+        {
+            "trait_type": "Head",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Shield"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 2"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Orange"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Blue"
+        }
+    ],
+    "7": [
+        {
+            "trait_type": "Head",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Beads"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 2"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Red"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Green"
+        }
+    ],
+    "8": [
+        {
+            "trait_type": "Head",
+            "value": "Easy"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Beads"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 2"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Orange"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Green"
+        }
+    ],
+    "9": [
+        {
+            "trait_type": "Head",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Pouch"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 1"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Green"
+        }
+    ],
+    "10": [
+        {
+            "trait_type": "Head",
+            "value": "Hard"
+        },
+        {
+            "trait_type": "Tools",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Chain"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Platform",
+            "value": "Platform 2"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Secondary material",
+            "value": "Dark_Red"
+        }
+    ]
+}

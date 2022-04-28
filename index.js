@@ -9,12 +9,15 @@ const express = require('express'),
 
   dbTraitsBots = new JSONdb('./db/traits_bots.json'),
   dbTraitsShrooms = new JSONdb('./db/traits_shrooms.json'),
+  dbTraitsDummies = new JSONdb('./db/traits_dummies.json'),
 
   dbStatsBots = new JSONdb('./db/stats_bots.json'),
   dbStatsShrooms = new JSONdb('./db/stats_shrooms.json'),
+  dbStatsDummies = new JSONdb('./db/stats_dummies.json'),
 
   dbResistanceBots = new JSONdb('./db/resistance_bots.json'),
   dbResistanceShrooms = new JSONdb('./db/resistance_shrooms.json'),
+  dbResistanceDummies = new JSONdb('./db/resistance_dummies.json'),
 
   dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json'),
   dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json'),
@@ -223,13 +226,88 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.pop();
 })
 
-// app.get('/resistance_bots/', function (req, res) {
-//   res.send(dbResistanceBots);
-// })
+app.get('/dummie/:token_id', function (req, res) {
+  const tokenId = parseInt(req.params.token_id).toString();
+  const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
+  traits = dbTraitsDummies.get(tokenId);
 
-// app.get('/resistance_shrooms/', function (req, res) {
-//   res.send(dbResistanceShrooms);
-// })
+  weaponPower = getStat(dbStatsDummies, "Weapon", traits);
+  toolPower = getStat(dbStatsDummies, "Tools", traits)
+
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
+
+  let resist = dbResistanceDummies.storage.Resistance
+  let toyResist
+  let traitForResist
+
+  let traitHead 
+
+  traits.forEach(trait => {
+    if(trait.trait_type == "Tools"){
+      traitForResist = trait.value
+    }
+  })
+  
+  traits.forEach(trait => {
+    if(trait.trait_type == "Head"){
+      traitHead = trait.value
+    }
+  })
+  
+  resist.forEach(elem => {
+    if(traitForResist===elem.item){
+      toyResist = elem.values
+    }
+  })
+
+  let dbDummieHead =  dbStatsDummies.get('Head')
+
+  dbDummieHead.forEach(elem => {
+    if(traitHead === elem.head){
+      traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(elem.force)});
+    }
+  })
+
+  // traits.forEach(trait => {
+  //   if(trait.trait_type === "Attack"){
+  //     traitHealth += trait.value
+  //   }
+  //   if(trait.trait_type === "Defence"){
+  //     traitHealth += trait.value
+  //   }
+  //   if(trait.trait_type === "Trick"){
+  //     traitHealth += trait.value
+  //   }        
+  // })
+
+  traits.push({"trait_type": "Health", "value": 100});
+
+  let tokenDetails = {
+    description: "",
+    image: '',
+    name: '',
+    attributes: {
+      'Ready To Battle': 'Soon'
+    },
+    alpha_125: '',
+    alpha_500: '',
+    resistance: toyResist
+  };
+
+  if (revealIsActive) {
+    // tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    // tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.attributes = traits;
+  }
+
+  res.send(tokenDetails);
+
+  traits.pop();
+  traits.pop();
+  traits.pop();
+  traits.pop();
+})
 
 app.get('/prize/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();

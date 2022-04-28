@@ -1,5 +1,4 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { promisify } = require('util');
 
 const creds = require('./coral-core-337710-8c50e72e7ab1.json')
 
@@ -9,6 +8,7 @@ const JSONdb = require('simple-json-db')
 
 const dbStatsBots = new JSONdb('./db/stats_bots.json'),
   dbStatsShrooms = new JSONdb('./db/stats_shrooms.json'),
+  dbStatsDummies = new JSONdb('./db/stats_dummies.json'),
   fs = require('fs')
   
 let BotsWeapon = []
@@ -18,6 +18,10 @@ let BotsHeads = []
 let ShroomsWeapon = []
 let ShroomsToy = []
 let ShroomsHeads = []
+
+let DummiesWeapon = []
+let DummiesToy = []
+let DummiesHeads = []
 
 async function accessSpreadsheet() {
   await doc.useServiceAccountAuth({
@@ -116,3 +120,45 @@ async function getShroomsHeads(){
 }
 
 getShroomsHeads()
+
+async function getDummiesHeads(){
+  let sheet = await accessSpreadsheet()
+
+  await sheet.loadCells('A36:D40');
+  for(let x = 19; x<30; x++){
+    DummiesWeapon.push({
+      item: sheet.getCell(x, 0).value, 
+      force: sheet.getCell(x, 2).value, 
+    })
+  }
+
+  await sheet.loadCells('G36:J40');
+  for(let x = 19; x<30; x++){
+    DummiesToy.push({
+      item: sheet.getCell(x, 6).value, 
+      force: sheet.getCell(x, 8).value, 
+    })
+  }
+
+  await sheet.loadCells('M36:O40');
+  for(let x = 19; x<30; x++){
+    DummiesHeads.push({
+      head: sheet.getCell(x, 12).value, 
+      force: sheet.getCell(x, 14).value
+    })
+  }
+
+    
+  const dummies = {
+    Weapon: DummiesWeapon,  
+    Tools: DummiesToy,  
+    Head: DummiesHeads  
+  };
+
+
+  console.log(dummies)
+  json = JSON.stringify(dummies); //convert it back to json
+  fs.writeFile('./db/stats_dummies.json', json, 'utf8', () => {}); // write it back 
+}
+
+getDummiesHeads()
