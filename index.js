@@ -15,9 +15,6 @@ const express = require('express'),
   dbStatsShrooms = new JSONdb('./db/stats_shrooms.json'),
   dbStatsDummies = new JSONdb('./db/stats_dummies.json'),
 
-  dbResistanceBots = new JSONdb('./db/resistance_bots.json'),
-  dbResistanceShrooms = new JSONdb('./db/resistance_shrooms.json'),
-
   dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json'),
   dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json'),
   dbWinnerCategories = new JSONdb('./db/winner_categories.json'),
@@ -69,35 +66,6 @@ app.get('/bot/:token_id', function (req, res) {
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toyPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(trickPower)});
-  
-  let resist = dbResistanceBots.storage.Resistance,
-    toyResist,
-    traitForResist
-
-  traits.forEach(trait => {
-    if(trait.trait_type == "Toy"){
-      traitForResist = trait.value
-    }
-  })
-  
-  resist.forEach(elem => {
-    if(traitForResist===elem.item){
-      toyResist = elem.values
-    }
-  })
-
-
-  // traits.forEach(trait => {
-  //   if(trait.trait_type === "Attack"){
-  //     traitHealth += trait.value
-  //   }
-  //   if(trait.trait_type === "Defence"){
-  //     traitHealth += trait.value
-  //   }
-  //   if(trait.trait_type === "Trick"){
-  //     traitHealth += trait.value
-  //   }        
-  // })
 
   traits.push({"trait_type": "Health", "value": 100});
 
@@ -109,8 +77,7 @@ app.get('/bot/:token_id', function (req, res) {
       'Ready To Battle': 'Soon',
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
-    resistance: toyResist
+    alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png'
   };
 
   if (revealIsActive) {
@@ -140,36 +107,6 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(toolPower)});
 
-  let resist = dbResistanceShrooms.storage.Resistance,
-    toyResist,
-    traitForResist
-
-  traits.forEach(trait => {
-    if(trait.trait_type == "Tools"){
-      traitForResist = trait.value
-    }
-  })
-  
-  
-  resist.forEach(elem => {
-    if(traitForResist===elem.item){
-      toyResist = elem.values
-    }
-  })
-
-
-  // traits.forEach(trait => {
-  //   if(trait.trait_type === "Attack"){
-  //     traitHealth += trait.value
-  //   }
-  //   if(trait.trait_type === "Defence"){
-  //     traitHealth += trait.value
-  //   }
-  //   if(trait.trait_type === "Trick"){
-  //     traitHealth += trait.value
-  //   }        
-  // })
-
   traits.push({"trait_type": "Health", "value": 100});
 
   let tokenDetails = {
@@ -180,8 +117,7 @@ app.get('/shroom/:token_id', function (req, res) {
       'Ready To Battle': 'Soon'
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
-    resistance: toyResist
+    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
   };
 
   if (revealIsActive) {
