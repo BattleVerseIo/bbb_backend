@@ -101,11 +101,11 @@ app.get('/shroom/:token_id', function (req, res) {
 
   weaponPower = getStat(dbStatsShrooms, "Weapon", traits);
   toolPower = getStat(dbStatsShrooms, "Tools", traits)
-  toolPower = getStat(dbStatsShrooms, "Head", traits)
+  trickPower = getStat(dbStatsShrooms, "Head", traits)
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
-  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(toolPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(trickPower)});
 
   traits.push({"trait_type": "Health", "value": 100});
 
