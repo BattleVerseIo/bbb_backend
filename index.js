@@ -15,6 +15,8 @@ const express = require('express'),
   dbStatsShrooms = new JSONdb('./db/stats_shrooms.json'),
   dbStatsDummies = new JSONdb('./db/stats_dummies.json'),
 
+  dbPlatforms = new JSONdb('./db/platforms.json'),
+
   dbIpfsHashesPrizes = new JSONdb('./db/ipfs_hashes_prizes.json'),
   dbIpfsHashesPrizesPreviews = new JSONdb('./db/ipfs_hashes_prizes_previews.json'),
   dbWinnerCategories = new JSONdb('./db/winner_categories.json'),
@@ -54,18 +56,52 @@ function getStat(db, type, traits) {
   return result ? result.force : -1;
 }
 
+function getStatAttack(db, type, traits) {
+  result = false;
+  statsAll = db.get(type);
+
+  traits.forEach(trait => {
+    foundStat = statsAll.find(function(stat, index){
+      if(trait.trait_type == type && stat.item == trait.value) return true;
+    });
+
+    if(typeof foundStat !== 'undefined') result = foundStat;
+  });
+
+  return result ? result.attack : -1;
+}
+
+function getStatSelfBoost(db, type, traits) {
+  result = false;
+  statsAll = db.get(type);
+
+  traits.forEach(trait => {
+    foundStat = statsAll.find(function(stat, index){
+      if(trait.trait_type == type && stat.item == trait.value) return true;
+    });
+
+    if(typeof foundStat !== 'undefined') result = foundStat;
+  });
+
+  return result ? result.selfBoost : -1;
+}
+
 app.get('/bot/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashes.get(tokenId);
   traits = dbTraitsBots.get(tokenId);
 
-  weaponPower = getStat(dbStatsBots, "Weapon", traits);
-  toyPower = getStat(dbStatsBots, "Toy", traits)
-  trickPower = getStat(dbStatsBots, "Head", traits)
-  
-  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
-  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toyPower)});
-  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(trickPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsBots, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsBots, "Toy", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsBots, "Head", traits))});
+
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Attack", "value": Math.round(getStatAttack(dbStatsBots, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Defence", "value": Math.round(getStatAttack(dbStatsBots, "Toy", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Trick", "value": Math.round(getStatAttack(dbStatsBots, "Head", traits))});
+
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Attack", "value": Math.round(getStatSelfBoost(dbStatsBots, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Defence", "value": Math.round(getStatSelfBoost(dbStatsBots, "Toy", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsBots, "Head", traits))});  
 
   traits.push({"trait_type": "Health", "value": 100});
 
@@ -88,10 +124,7 @@ app.get('/bot/:token_id', function (req, res) {
 
   res.send(tokenDetails);
 
-  traits.pop();
-  traits.pop();
-  traits.pop();
-  traits.pop();
+  for(let x = 0; x<10; x++) traits.pop();
 })
 
 app.get('/shroom/:token_id', function (req, res) {
@@ -99,13 +132,17 @@ app.get('/shroom/:token_id', function (req, res) {
   const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
   traits = dbTraitsShrooms.get(tokenId);
 
-  weaponPower = getStat(dbStatsShrooms, "Weapon", traits);
-  toolPower = getStat(dbStatsShrooms, "Tools", traits)
-  trickPower = getStat(dbStatsShrooms, "Head", traits)
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsShrooms, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsShrooms, "Tools", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsShrooms, "Head", traits))});
 
-  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(weaponPower)});
-  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(toolPower)});
-  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(trickPower)});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Attack", "value": Math.round(getStatAttack(dbStatsShrooms, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Defence", "value": Math.round(getStatAttack(dbStatsShrooms, "Tools", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Trick", "value": Math.round(getStatAttack(dbStatsShrooms, "Head", traits))});
+
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Attack", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Defence", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Tools", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Head", traits))}); 
 
   traits.push({"trait_type": "Health", "value": 100});
 
@@ -128,10 +165,7 @@ app.get('/shroom/:token_id', function (req, res) {
 
   res.send(tokenDetails);
 
-  traits.pop();
-  traits.pop();
-  traits.pop();
-  traits.pop();
+  for(let x = 0; x<10; x++) traits.pop();
 })
 
 app.get('/dummy/:token_id', function (req, res) {
@@ -154,18 +188,6 @@ app.get('/dummy/:token_id', function (req, res) {
       traitForResist = trait.value
     }
   })
-
-  // traits.forEach(trait => {
-  //   if(trait.trait_type === "Attack"){
-  //     traitHealth += trait.value
-  //   }
-  //   if(trait.trait_type === "Defence"){
-  //     traitHealth += trait.value
-  //   }
-  //   if(trait.trait_type === "Trick"){
-  //     traitHealth += trait.value
-  //   }        
-  // })
 
   traits.push({"trait_type": "Health", "value": 100});
 
@@ -192,6 +214,10 @@ app.get('/dummy/:token_id', function (req, res) {
   traits.pop();
   traits.pop();
   traits.pop();
+})
+
+app.get('/platforms', function (req, res) {
+  res.send(dbPlatforms.storage);
 })
 
 app.get('/prize/:token_id', function (req, res) {

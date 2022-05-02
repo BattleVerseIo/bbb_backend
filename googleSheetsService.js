@@ -36,32 +36,32 @@ async function accessSpreadsheet() {
 
 async function getBotsHeads(){
   let sheet = await accessSpreadsheet()
-  await sheet.loadCells('A1:D12');
-  for(let x = 2; x<12; x++){
+  await sheet.loadCells('A7:D17');
+  for(let x = 7; x<17; x++){
     BotsWeapon.push({
       item: ((sheet.getCell(x, 0).value).slice(2)).replace(' ', ''), 
-      rarity: sheet.getCell(x, 1).value, 
-      force: sheet.getCell(x, 2).value, 
-      quantity: sheet.getCell(x, 3).value, 
+      force: sheet.getCell(x, 1).value, 
+      selfBoost: sheet.getCell(x, 2).value, 
+      attack: sheet.getCell(x, 3).value, 
     })
   }
-
-  await sheet.loadCells('G1:J14');
-  for(let x = 2; x<13; x++){
+  await sheet.loadCells('E7:H18');
+  for(let x = 7; x<18; x++){
     BotsToy.push({
-      item: sheet.getCell(x, 6).value, 
-      rarity: sheet.getCell(x, 7).value, 
-      force: sheet.getCell(x, 8).value, 
-      quantity: sheet.getCell(x, 9).value, 
+      item: sheet.getCell(x, 4).value, 
+      force: sheet.getCell(x, 5).value, 
+      selfBoost: sheet.getCell(x, 6).value, 
+      attack: sheet.getCell(x, 7).value, 
     })
   }
 
-  await sheet.loadCells('M1:O11');
-  for(let x = 2; x<10; x++){
+  await sheet.loadCells('I7:L15');
+  for(let x = 7; x<15; x++){
     BotsHeads.push({
-      item: sheet.getCell(x, 12).value, 
-      rarity: sheet.getCell(x, 13).value, 
-      force: sheet.getCell(x, 14).value
+      item: sheet.getCell(x, 8).value, 
+      force: sheet.getCell(x, 9).value, 
+      selfBoost: sheet.getCell(x, 10).value, 
+      attack: sheet.getCell(x, 11).value
     })
   }
     const bots = {
@@ -69,40 +69,43 @@ async function getBotsHeads(){
       Toy: BotsToy, 
       Head: BotsHeads  
     };
-    console.log(bots)
+    // console.log(bots)
     json = JSON.stringify(bots); //convert it back to json
     fs.writeFile('./db/stats_bots.json', json, 'utf8', () => {}); // write it back 
 }
 
-getBotsHeads()
+// getBotsHeads()
 
 async function getShroomsHeads(){
   let sheet = await accessSpreadsheet()
 
-  await sheet.loadCells('A18:D30');
-  for(let x = 19; x<30; x++){
+  await sheet.loadCells('A24:D35');
+  for(let x = 24; x<35; x++){
     ShroomsWeapon.push({
       item: sheet.getCell(x, 0).value, 
-      rarity: sheet.getCell(x, 1).value, 
-      force: sheet.getCell(x, 2).value, 
+      force: sheet.getCell(x, 1).value, 
+      selfBoost: sheet.getCell(x, 2).value, 
+      attack: sheet.getCell(x, 3).value, 
     })
   }
 
-  await sheet.loadCells('G19:J30');
-  for(let x = 19; x<30; x++){
+  await sheet.loadCells('E24:H35');
+  for(let x = 24; x<35; x++){
     ShroomsToy.push({
-      item: sheet.getCell(x, 6).value, 
-      rarity: sheet.getCell(x, 7).value, 
-      force: sheet.getCell(x, 8).value, 
+      item: sheet.getCell(x, 4).value, 
+      force: sheet.getCell(x, 5).value, 
+      selfBoost: sheet.getCell(x, 6).value, 
+      attack: sheet.getCell(x, 7).value,  
     })
   }
 
-  await sheet.loadCells('M18:O30');
-  for(let x = 19; x<30; x++){
+  await sheet.loadCells('I24:L35');
+  for(let x = 24; x<35; x++){
     ShroomsHeads.push({
-      item: sheet.getCell(x, 12).value, 
-      rarity: sheet.getCell(x, 13).value, 
-      force: sheet.getCell(x, 14).value
+      item: sheet.getCell(x, 8).value, 
+      force: sheet.getCell(x, 9).value, 
+      selfBoost: sheet.getCell(x, 10).value, 
+      attack: sheet.getCell(x, 11).value
     })
   }
 
@@ -121,44 +124,44 @@ async function getShroomsHeads(){
 
 getShroomsHeads()
 
-async function getDummiesHeads(){
-  let sheet = await accessSpreadsheet()
+// async function getDummiesHeads(){
+//   let sheet = await accessSpreadsheet()
 
-  await sheet.loadCells('A36:D40');
-  for(let x = 19; x<30; x++){
-    DummiesWeapon.push({
-      item: sheet.getCell(x, 0).value, 
-      force: sheet.getCell(x, 2).value, 
-    })
-  }
+//   await sheet.loadCells('A36:D40');
+//   for(let x = 19; x<30; x++){
+//     DummiesWeapon.push({
+//       item: sheet.getCell(x, 0).value, 
+//       force: sheet.getCell(x, 2).value, 
+//     })
+//   }
 
-  await sheet.loadCells('G36:J40');
-  for(let x = 19; x<30; x++){
-    DummiesToy.push({
-      item: sheet.getCell(x, 6).value, 
-      force: sheet.getCell(x, 8).value, 
-    })
-  }
+//   await sheet.loadCells('G36:J40');
+//   for(let x = 19; x<30; x++){
+//     DummiesToy.push({
+//       item: sheet.getCell(x, 6).value, 
+//       force: sheet.getCell(x, 8).value, 
+//     })
+//   }
 
-  await sheet.loadCells('M36:O40');
-  for(let x = 19; x<30; x++){
-    DummiesHeads.push({
-      item: sheet.getCell(x, 12).value, 
-      force: sheet.getCell(x, 14).value
-    })
-  }
+//   await sheet.loadCells('M36:O40');
+//   for(let x = 19; x<30; x++){
+//     DummiesHeads.push({
+//       item: sheet.getCell(x, 12).value, 
+//       force: sheet.getCell(x, 14).value
+//     })
+//   }
 
     
-  const dummies = {
-    Weapon: DummiesWeapon,  
-    Tools: DummiesToy,  
-    Head: DummiesHeads  
-  };
+//   const dummies = {
+//     Weapon: DummiesWeapon,  
+//     Tools: DummiesToy,  
+//     Head: DummiesHeads  
+//   };
 
 
-  console.log(dummies)
-  json = JSON.stringify(dummies); //convert it back to json
-  fs.writeFile('./db/stats_dummies.json', json, 'utf8', () => {}); // write it back 
-}
+//   console.log(dummies)
+//   json = JSON.stringify(dummies); //convert it back to json
+//   fs.writeFile('./db/stats_dummies.json', json, 'utf8', () => {}); // write it back 
+// }
 
-getDummiesHeads()
+// getDummiesHeads()
