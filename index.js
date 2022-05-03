@@ -124,7 +124,7 @@ app.get('/bot/:token_id', function (req, res) {
 
   res.send(tokenDetails);
 
-  for(let x = 0; x<10; x++) traits.pop();
+  for(let x = 0; x<4; x++) traits.pop();
 })
 
 app.get('/shroom/:token_id', function (req, res) {
@@ -165,7 +165,7 @@ app.get('/shroom/:token_id', function (req, res) {
 
   res.send(tokenDetails);
 
-  for(let x = 0; x<10; x++) traits.pop();
+  for(let x = 0; x<4; x++) traits.pop();
 })
 
 app.get('/dummy/:token_id', function (req, res) {
