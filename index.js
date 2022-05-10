@@ -3,6 +3,7 @@ const express = require('express'),
   cors = require('cors'),
 
   JSONdb = require('simple-json-db'),
+  mongoose = require('mongoose'),
 
   dbIpfsHashes = new JSONdb('./db/ipfs_hashes.json'),
   dbIpfsHashesShrooms = new JSONdb('./db/ipfs_hashes_shrooms.json'),
@@ -40,6 +41,17 @@ app.get('/', function (req, res) {
   res.send('All_is up');
 })
 
+mongoose.connect("mongodb+srv://VictorSoltan:Password1!@cluster0.dc7dp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (err) => {
+  if(!err) console.log('db connected')
+  else console.log(err)
+})
+
+const Stat = new mongoose.Schema({
+  wallet: String,
+  logs: Array 
+})
+
+const NewModel = new mongoose.model("userStats", Stat)
 
 function getStat(db, type, traits) {
   result = false;
@@ -245,6 +257,30 @@ app.get('/prize/:token_id', function (req, res) {
   };
 
   res.send(tokenDetails);
+})
+
+app.post('/sendDataAboutBug', async function (req, res) {
+  let wallet = req.body.wallet;
+  const user = await NewModel.findOne({ wallet: wallet });
+  const isoStr = new Date().toISOString();
+
+  if(user){
+    console.log('exist')
+    user.logs.push({time: isoStr, logs: req.body.data})
+    user.save()
+  }else{
+    console.log("doesn't exist")
+    const data = NewModel({
+      wallet: req.body.wallet, 
+      logs: {time: isoStr, logs: req.body.data}
+    })
+    data.save()
+  }
+})
+
+app.get('/logs', async function (req, res) {
+  const logs = await NewModel.find({});
+  res.send(logs);
 })
 
 app.use(function onError(err, req, res, next) {
