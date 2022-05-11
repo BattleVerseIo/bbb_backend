@@ -19,7 +19,7 @@
     "googleapis": "39",
     "moment": "^2.22.2",
     "mongodb": "^4.4.0",
-    "mongoose": "^6.2.4",
+    "mongoose": "^6.3.3",
     "simple-json-db": "^1.2.3",
     "web3": "^1.7.0"
   },

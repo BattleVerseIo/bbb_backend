@@ -48,6 +48,7 @@ mongoose.connect("mongodb+srv://VictorSoltan:Password1!@cluster0.dc7dp.mongodb.n
 
 const Stat = new mongoose.Schema({
   wallet: String,
+  date: String,
   logs: Array 
 })
 
@@ -260,27 +261,23 @@ app.get('/prize/:token_id', function (req, res) {
 })
 
 app.post('/sendDataAboutBug', async function (req, res) {
-  let wallet = req.body.wallet;
-  const user = await NewModel.findOne({ wallet: wallet });
   const isoStr = new Date().toISOString();
 
-  if(user){
-    console.log('exist')
-    user.logs.push({time: isoStr, logs: req.body.data})
-    user.save()
-  }else{
-    console.log("doesn't exist")
-    const data = NewModel({
-      wallet: req.body.wallet, 
-      logs: {time: isoStr, logs: req.body.data}
-    })
-    data.save()
-  }
+  const data = NewModel({
+    wallet: req.body.wallet, 
+    date: isoStr,
+    logs: req.body.data
+  })
+  data.save()
 })
 
 app.get('/logs', async function (req, res) {
-  const logs = await NewModel.find({});
-  res.send(logs);
+  const logs = await NewModel.find({})
+  let newArr = []
+  for(let x=0; x<logs.length;  x++){
+    newArr.push({wallet: logs[x].wallet, id: logs[x]._id, date: logs[x].date, logs: logs[x].logs})
+  }
+  res.send(newArr);  
 })
 
 app.use(function onError(err, req, res, next) {
