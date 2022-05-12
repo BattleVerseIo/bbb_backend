@@ -277,7 +277,7 @@ app.get('/logs', async function (req, res) {
   for(let x=0; x<logs.length;  x++){
     newArr.push({wallet: logs[x].wallet, id: logs[x]._id, date: logs[x].date, logs: logs[x].logs})
   }
-  res.send(newArr);  
+  res.send(newArr.reverse());  
 })
 
 app.use(function onError(err, req, res, next) {
