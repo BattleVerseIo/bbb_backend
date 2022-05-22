@@ -181,6 +181,56 @@ app.get('/shroom/:token_id', function (req, res) {
   for(let x = 0; x<4; x++) traits.pop();
 })
 
+app.get('/testshroom/:token_id', function (req, res) {
+  const tokenId = parseInt(690).toString();
+  const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
+  
+  traits = [
+    { trait_type: 'Head', value: 'Monk' },
+    { trait_type: 'Tools', value: 'Net' },
+    { trait_type: 'Body', value: 'Bones' },
+    { trait_type: 'Weapon', value: 'Long Knife' },
+    { trait_type: 'Platform', value: 'Platform 1' },
+    { trait_type: 'Material', value: 'Blue' },
+    { trait_type: 'Secondary material', value: 'Dark_Red' }
+  ]
+
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsShrooms, "Weapon", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsShrooms, "Tools", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsShrooms, "Head", traits))});
+
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Attack", "value": Math.round(getStatAttack(dbStatsShrooms, "Weapon", traits))});
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Defence", "value": Math.round(getStatAttack(dbStatsShrooms, "Tools", traits))});
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Trick", "value": Math.round(getStatAttack(dbStatsShrooms, "Head", traits))});
+
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Attack", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Weapon", traits))});
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Defence", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Tools", traits))});
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Head", traits))}); 
+
+  traits.push({"trait_type": "Health", "value": 100});
+
+  let tokenDetails = {
+    description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
+    image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
+    name: 'Battle Shroom #' + tokenId,
+    attributes: {
+      'Ready To Battle': 'Soon'
+    },
+    alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
+    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
+  };
+
+  if (revealIsActive) {
+    tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.attributes = traits;
+  }
+
+  res.send(tokenDetails);
+
+  for(let x = 0; x<4; x++) traits.pop();
+})
+
 app.get('/dummy/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
   const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
