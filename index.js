@@ -47,6 +47,7 @@ mongoose.connect("mongodb+srv://VictorSoltan:Password1!@cluster0.dc7dp.mongodb.n
 })
 
 const Stat = new mongoose.Schema({
+  logId: Number,
   wallet: String,
   date: String,
   logs: Array 
@@ -314,6 +315,7 @@ app.post('/sendDataAboutBug', async function (req, res) {
   const isoStr = new Date().toISOString();
 
   const data = NewModel({
+    logId: req.body.logId,
     wallet: req.body.wallet, 
     date: isoStr,
     logs: req.body.data
@@ -325,7 +327,7 @@ app.get('/logs', async function (req, res) {
   const logs = await NewModel.find({})
   let newArr = []
   for(let x=0; x<logs.length;  x++){
-    newArr.push({wallet: logs[x].wallet, id: logs[x]._id, date: logs[x].date, logs: logs[x].logs})
+    newArr.push({wallet: logs[x].wallet, logId: logs[x].logId, date: logs[x].date, logs: logs[x].logs})
   }
   res.send(newArr.reverse());  
 })
