@@ -56,6 +56,8 @@ const Stat = new mongoose.Schema({
   wallet: String,
   date: String,
   theme: Array,
+  response: Array,
+  user_Message: Array,
   logs: Array 
 })
 
@@ -325,11 +327,13 @@ app.post('/sendDataAboutBug', async function (req, res) {
     wallet: req.body.wallet, 
     theme: req.body.theme,
     date: isoStr,
-    logs: req.body.data
+    response: req.body.statsOther,
+    user_Message: req.body.userMessage,
+    logs: req.body.logs
   })
   data.save()
 
-  console.log('trying ', req.body.data)
+  console.log('trying ', req.body.logId)
 
   try {
     const response = await notion.pages.create({
@@ -344,6 +348,15 @@ app.post('/sendDataAboutBug', async function (req, res) {
             }
           ]
         },
+        User_Message: { 
+          rich_text:[
+            {
+              text: {
+                content: JSON.stringify(req.body.userMessage)
+              }
+            }
+          ]
+        },        
         Theme: { 
           rich_text:[
             {
