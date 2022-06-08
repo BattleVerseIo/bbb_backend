@@ -1,6 +1,11 @@
+
 const express = require('express'),
   path = require('path'),
   cors = require('cors'),
+  { Client } = require("@notionhq/client"),
+
+  notion = new Client({ auth: "secret_wth3zVobb9hQpzTuvj9WtjNodiXu6VYd8EUHp1ayuxt" }),
+  databaseId = "7120ba6f5cf94f2888f07e990097abcb",
 
   JSONdb = require('simple-json-db'),
   mongoose = require('mongoose'),
@@ -50,6 +55,7 @@ const Stat = new mongoose.Schema({
   logId: Number,
   wallet: String,
   date: String,
+  theme: Array,
   logs: Array 
 })
 
@@ -317,19 +323,76 @@ app.post('/sendDataAboutBug', async function (req, res) {
   const data = NewModel({
     logId: req.body.logId,
     wallet: req.body.wallet, 
+    theme: req.body.theme,
     date: isoStr,
     logs: req.body.data
   })
   data.save()
+
+  console.log('trying ', req.body.data)
+
+  try {
+    const response = await notion.pages.create({
+      parent: { database_id: databaseId },
+      properties: {
+        Title: { 
+          title:[
+            {
+              text: {
+                content: JSON.stringify(req.body.statsOther)
+              }
+            }
+          ]
+        },
+        Theme: { 
+          rich_text:[
+            {
+              text: {
+                content: JSON.stringify(req.body.theme)
+              }
+            }
+          ]
+        },
+        Wallet: { 
+          rich_text:[
+            {
+              text: {
+                content: String(req.body.wallet)
+              }
+            }
+          ]
+        },        
+        Link: { 
+          url: 'https://tokens.battleverse.io/logs/' + String(req.body.logId) 
+        }                  
+      }
+    })
+    console.log(response)
+    console.log("Success! Entry added.")
+  } catch (error) {
+    console.error(error.body)
+  }
+
 })
 
 app.get('/logs', async function (req, res) {
   const logs = await NewModel.find({})
   let newArr = []
   for(let x=0; x<logs.length;  x++){
-    newArr.push({wallet: logs[x].wallet, logId: logs[x].logId, date: logs[x].date, logs: logs[x].logs})
+    newArr.push({wallet: logs[x].wallet, logId: logs[x].logId, theme: logs[x].theme, date: logs[x].date, logs: logs[x].logs})
   }
   res.send(newArr.reverse());  
+})
+
+app.get('/logs/:id', async function (req, res) {
+  console.log('log id', req.params.id)
+  const logs = await NewModel.findOne({logId: req.params.id})
+  res.send(logs);  
+})
+
+app.post('/submitFormToNotion', async (req, res) => {
+
+
 })
 
 app.use(function onError(err, req, res, next) {
