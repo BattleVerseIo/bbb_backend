@@ -395,7 +395,8 @@ app.get('/logs', async function (req, res) {
   const logs = await NewModel.find({})
   let newArr = []
   for(let x=0; x<logs.length;  x++){
-    newArr.push({wallet: logs[x].wallet, logId: logs[x].logId, theme: logs[x].theme, date: logs[x].date, logs: logs[x].logs})
+    newArr.push({wallet: logs[x].wallet, logId: logs[x].logId, theme: logs[x].theme, response: logs[x].response,
+      user_Message: logs[x].user_Message, date: logs[x].date, logs: logs[x].logs })
   }
   res.send(newArr.reverse());  
 })
