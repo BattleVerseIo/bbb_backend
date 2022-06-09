@@ -339,6 +339,9 @@ app.post('/sendDataAboutBug', async function (req, res) {
     const response = await notion.pages.create({
       parent: { database_id: databaseId },
       properties: {
+        Id: { 
+          number: req.body.logId
+        },        
         Title: { 
           title:[
             {
