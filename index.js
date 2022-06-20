@@ -134,13 +134,15 @@ app.get('/bot/:token_id', function (req, res) {
   traits.forEach(el => {
     if(el.trait_type === 'Weapon'){
       if(el.value === 'Saw') WeaponLink += '0001.png'
-      else if(el.value === 'Hammer') WeaponLink += '0002.png'
-      else if(el.value === 'Axe') WeaponLink += '0003.png'
-      else if(el.value === 'Lightnning') WeaponLink += '0004.png'
-      else if(el.value === 'Club') WeaponLink += '0005.png'
-      else if(el.value === 'Double Spike') WeaponLink += '0006.png'
-      else if(el.value === 'Spike') WeaponLink += '0007.png'
-      else if(el.value === 'Blade') WeaponLink += '0008.png'
+      else if(el.value === 'Drill') WeaponLink += '0002.png'
+      else if(el.value === 'Hammer') WeaponLink += '0003.png'
+      else if(el.value === 'Axe') WeaponLink += '0004.png'
+      else if(el.value === 'Lightnning') WeaponLink += '0005.png'
+      else if(el.value === 'Clu2') WeaponLink += '0006.png'
+      else if(el.value === 'Club') WeaponLink += '0007.png'
+      else if(el.value === 'Double Spike') WeaponLink += '0008.png'
+      else if(el.value === 'Spike') WeaponLink += '0009.png'
+      else if(el.value === 'Blade') WeaponLink += '0010.png'
     }
   })
 
