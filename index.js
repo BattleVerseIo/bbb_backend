@@ -138,7 +138,7 @@ app.get('/bot/:token_id', function (req, res) {
       else if(el.value === 'Hammer') WeaponLink += '0003.png'
       else if(el.value === 'Axe') WeaponLink += '0004.png'
       else if(el.value === 'Lightnning') WeaponLink += '0005.png'
-      else if(el.value === 'Clu2') WeaponLink += '0006.png'
+      else if(el.value === 'Claw') WeaponLink += '0006.png'
       else if(el.value === 'Club') WeaponLink += '0007.png'
       else if(el.value === 'Double Spike') WeaponLink += '0008.png'
       else if(el.value === 'Spike') WeaponLink += '0009.png'
