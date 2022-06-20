@@ -175,12 +175,6 @@ app.get('/bot/:token_id', function (req, res) {
     if(el.trait_type === 'Platform') el['img_link'] =  PlatformLink
   })    
 
-
-  console.log('link ', HeadLink)
-  console.log('link ', WeaponLink)
-  console.log('link ', ToysLink)
-  console.log('link ', PlatformLink)
-
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsBots, "Weapon", traits))});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsBots, "Toy", traits))});
   traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsBots, "Head", traits))});
@@ -203,7 +197,11 @@ app.get('/bot/:token_id', function (req, res) {
       'Ready To Battle': 'Soon',
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png'
+    alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
+    head_link: HeadLink,
+    weapon_link: WeaponLink,
+    toys_link: ToysLink,
+    platform_link: PlatformLink 
   };
 
   if (revealIsActive) {
@@ -282,13 +280,6 @@ app.get('/shroom/:token_id', function (req, res) {
     }
   })    
 
-  traits.forEach(el => {
-    if(el.trait_type === 'Head') el['img_link'] =  HeadLink
-    if(el.trait_type === 'Weapon') el['img_link'] =  WeaponLink
-    if(el.trait_type === 'Tools') el['img_link'] =  ToysLink
-    if(el.trait_type === 'Platform') el['img_link'] =  PlatformLink
-  })    
-
 
   console.log('link ', HeadLink)
   console.log('link ', WeaponLink)
@@ -316,7 +307,11 @@ app.get('/shroom/:token_id', function (req, res) {
       'Ready To Battle': 'Soon'
     },
     alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
+    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
+    head_link: HeadLink,
+    weapon_link: WeaponLink,
+    toys_link: ToysLink,
+    platform_link: PlatformLink
   };
 
   if (revealIsActive) {
