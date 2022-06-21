@@ -285,10 +285,6 @@ app.get('/shroom/:token_id', function (req, res) {
   })    
 
 
-  console.log('link ', HeadLink)
-  console.log('link ', WeaponLink)
-  console.log('link ', ToysLink)
-  console.log('link ', PlatformLink)
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsShrooms, "Weapon", traits))});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsShrooms, "Tools", traits))});
   traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsShrooms, "Head", traits))});
