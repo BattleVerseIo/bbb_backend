@@ -229,14 +229,14 @@ app.get('/shroom/:token_id', function (req, res) {
 
   traits.forEach(el => {
     if(el.trait_type === 'Head'){
-      if(el.value === 'Scientist') HeadLink += '0010.png'
+      if(el.value === 'Scientist') HeadLink += '0003.png'
       else if(el.value === 'Monk') HeadLink += '0009.png'
-      else if(el.value === 'Professor') HeadLink += '0007.png'
+      else if(el.value === 'Professor') HeadLink += '0010.png'
       else if(el.value === 'Four-eyed') HeadLink += '0008.png'
       else if(el.value === 'Mentalist') HeadLink += '0001.png'
       else if(el.value === 'Gilles') HeadLink += '0007.png'
-      else if(el.value === 'Favus') HeadLink += '0011.png'
-      else if(el.value === 'Redneck') HeadLink += '0006.png'
+      else if(el.value === 'Favus') HeadLink += '0006.png'
+      else if(el.value === 'Redneck') HeadLink += '0011.png'
       else if(el.value === 'Viking') HeadLink += '0002.png'
       else if(el.value === 'Snaims') HeadLink += '0004.png'
       else if(el.value === 'Licker') HeadLink += '0005.png'
@@ -245,29 +245,30 @@ app.get('/shroom/:token_id', function (req, res) {
 
   traits.forEach(el => {
     if(el.trait_type === 'Weapon'){
-      if(el.value === 'Tripple Hook') WeaponLink += '0001.png'
-      else if(el.value === 'Nunchucks') WeaponLink += '0002.png'
-      else if(el.value === 'Sword') WeaponLink += '0003.png'
-      else if(el.value === 'Scissors') WeaponLink += '0004.png'
-      else if(el.value === 'Long Knife') WeaponLink += '0005.png'
+      if(el.value === 'Tripple Hook') WeaponLink += '0004.png'
+      else if(el.value === 'Nunchucks') WeaponLink += '0011.png'
+      else if(el.value === 'Sword') WeaponLink += '0002.png'
+      else if(el.value === 'Scissors') WeaponLink += '0008.png'
+      else if(el.value === 'Long Knife') WeaponLink += '0001.png'
+      else if(el.value === 'Mace') WeaponLink += '0009.png'
       else if(el.value === 'Hammer') WeaponLink += '0006.png'
       else if(el.value === 'Axe') WeaponLink += '0007.png'
-      else if(el.value === 'Hoe') WeaponLink += '0008.png'
-      else if(el.value === 'Shovel') WeaponLink += '0009.png'
-      else if(el.value === 'Butcher') WeaponLink += '0010.png'
+      else if(el.value === 'Hoe') WeaponLink += '0005.png'
+      else if(el.value === 'Shovel') WeaponLink += '0010.png'
+      else if(el.value === 'Butcher') WeaponLink += '0003.png'
     }
   })
 
   traits.forEach(el => {
     if(el.trait_type === 'Tools'){
       if(el.value === 'Beehive') ToysLink += '0005.png'
-      else if(el.value === 'Trap') ToysLink += '0002.png'
+      else if(el.value === 'Trap') ToysLink += '0011.png'
       else if(el.value === 'Bomb') ToysLink += '0009.png'
       else if(el.value === 'Poison') ToysLink += '0003.png'
       else if(el.value === 'Dreamcatcher') ToysLink += '0008.png'
       else if(el.value === 'Liquid') ToysLink += '0001.png'
       else if(el.value === 'Torch') ToysLink += '0007.png'
-      else if(el.value === 'Net') ToysLink += '0008.png'
+      else if(el.value === 'Net') ToysLink += '0010.png'
       else if(el.value === 'Circle Shield') ToysLink += '0002.png'
       else if(el.value === 'Doll') ToysLink += '0004.png'
       else if(el.value === 'Hexagon Shield') ToysLink += '0006.png'
@@ -279,6 +280,7 @@ app.get('/shroom/:token_id', function (req, res) {
       if(el.value === 'Platform 1') PlatformLink += '0001.png'
       else if(el.value === 'Platform 2') PlatformLink += '0002.png'
       else if(el.value === 'Platform 3') PlatformLink += '0003.png'
+      else if(el.value === 'Platform 4') PlatformLink += '0004.png'
     }
   })    
 
