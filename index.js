@@ -106,17 +106,17 @@ BotPlatformImgs = [
   {item: 'Platform 3', img: '0003.png'} ],
 
 ShroomHeadImgs = [
-    {item: 'Scientist', img: '0003.png'},
-    {item: 'Monk', img: '0009.png'},
-    {item: 'Professor', img: '0010.png'},
-    {item: 'Four-eyed', img: '0008.png'},
-    {item: 'Mentalist', img: '0001.png'},
-    {item: 'Gilles', img: '0007.png'},
-    {item: 'Favus', img: '0006.png'},
-    {item: 'Redneck', img: '0011.png'},
-    {item: 'Viking', img: '0002.png'},
-    {item: 'Snaims', img: '0004.png'},
-    {item: 'Licker', img: '0005.png'} ],
+  {item: 'Scientist', img: '0003.png'},
+  {item: 'Monk', img: '0009.png'},
+  {item: 'Professor', img: '0010.png'},
+  {item: 'Four-eyed', img: '0008.png'},
+  {item: 'Mentalist', img: '0001.png'},
+  {item: 'Gilles', img: '0007.png'},
+  {item: 'Favus', img: '0006.png'},
+  {item: 'Redneck', img: '0011.png'},
+  {item: 'Viking', img: '0002.png'},
+  {item: 'Snaims', img: '0004.png'},
+  {item: 'Licker', img: '0005.png'} ],
 
 ShroomWeaponImgs = [
   {item: 'Tripple Hook', img: '0004.png'},
@@ -132,17 +132,17 @@ ShroomWeaponImgs = [
   {item: 'Butcher', img: '0003.png'} ],
 
 ShroomToysImgs = [
-    {item: 'Beehive', img: '0005.png'},
-    {item: 'Trap', img: '0011.png'},
-    {item: 'Bomb', img: '0009.png'},
-    {item: 'Poison', img: '0003.png'},
-    {item: 'Dreamcatcher', img: '0008.png'},
-    {item: 'Liquid', img: '0001.png'},
-    {item: 'Torch', img: '0007.png'},
-    {item: 'Net', img: '0010.png'},
-    {item: 'Circle Shield', img: '0002.png'},
-    {item: 'Doll', img: '0004.png'},
-    {item: 'Hexagon Shield', img: '0006.png'} ],
+  {item: 'Beehive', img: '0005.png'},
+  {item: 'Trap', img: '0011.png'},
+  {item: 'Bomb', img: '0009.png'},
+  {item: 'Poison', img: '0003.png'},
+  {item: 'Dreamcatcher', img: '0008.png'},
+  {item: 'Liquid', img: '0001.png'},
+  {item: 'Torch', img: '0007.png'},
+  {item: 'Net', img: '0010.png'},
+  {item: 'Circle Shield', img: '0002.png'},
+  {item: 'Doll', img: '0004.png'},
+  {item: 'Hexagon Shield', img: '0006.png'} ],
 
 ShroomPlatformImgs = [
   {item: 'Platform 1', img: '0001.png'},
@@ -151,7 +151,7 @@ ShroomPlatformImgs = [
   {item: 'Platform 4', img: '0003.png'} ]  
 
 
-function getStat(db, type, traits) {
+function getStat(db, type, traits, stata) {
   result = false;
   statsAll = db.get(type);
 
@@ -163,38 +163,8 @@ function getStat(db, type, traits) {
     if(typeof foundStat !== 'undefined') result = foundStat;
   });
 
-  return result ? result.force : -1;
+  return result ? result[stata] : -1;
 }
-
-function getStatAttack(db, type, traits) {
-  result = false;
-  statsAll = db.get(type);
-
-  traits.forEach(trait => {
-    foundStat = statsAll.find(function(stat, index){
-      if(trait.trait_type == type && stat.item == trait.value) return true;
-    });
-
-    if(typeof foundStat !== 'undefined') result = foundStat;
-  });
-
-  return result ? result.rarity : -1;
-}
-
-// function getStatSelfBoost(db, type, traits) {
-//   result = false;
-//   statsAll = db.get(type);
-
-//   traits.forEach(trait => {
-//     foundStat = statsAll.find(function(stat, index){
-//       if(trait.trait_type == type && stat.item == trait.value) return true;
-//     });
-
-//     if(typeof foundStat !== 'undefined') result = foundStat;
-//   });
-
-//   return result ? result.selfBoost : -1;
-// }
 
 app.get('/bot/:token_id', function (req, res) {
   const tokenId = parseInt(req.params.token_id).toString();
@@ -209,7 +179,7 @@ app.get('/bot/:token_id', function (req, res) {
   traits.forEach(el => {
 
     if(el.trait_type === 'Head'){
-      el['rarity'] = getStatAttack(dbStatsBots, "Head", traits)
+      el['rarity'] = getStat(dbStatsBots, "Head", traits, 'rarity')
 
       BotHeadImgs.forEach(elem => {
         if(el.value === elem.item) HeadLink += elem.img
@@ -217,7 +187,7 @@ app.get('/bot/:token_id', function (req, res) {
     }
     
     if(el.trait_type === 'Weapon'){
-      el['rarity'] = getStatAttack(dbStatsBots, "Weapon", traits)
+      el['rarity'] = getStat(dbStatsBots, "Weapon", traits, 'rarity')
 
       BotWeaponImgs.forEach(elem => {
         if(el.value === elem.item) WeaponLink += elem.img
@@ -225,7 +195,7 @@ app.get('/bot/:token_id', function (req, res) {
     }    
     
     if(el.trait_type === 'Toy'){
-      el['rarity'] = getStatAttack(dbStatsBots, "Toy", traits)
+      el['rarity'] = getStat(dbStatsBots, "Toy", traits, 'rarity')
 
       BotToysImgs.forEach(elem => {
         if(el.value === elem.item) ToysLink += elem.img
@@ -233,7 +203,7 @@ app.get('/bot/:token_id', function (req, res) {
     }    
     
     if(el.trait_type === 'Platform'){
-      el['rarity'] = getStatAttack(dbStatsBots, "Platform", traits)
+      el['rarity'] = getStat(dbStatsBots, "Platform", traits, 'rarity')
 
       BotPlatformImgs.forEach(elem => {
         if(el.value === elem.item) PlatformLink += elem.img
@@ -243,9 +213,9 @@ app.get('/bot/:token_id', function (req, res) {
   })
 
 
-  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsBots, "Weapon", traits))});
-  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsBots, "Toy", traits))});
-  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsBots, "Head", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsBots, "Weapon", traits, 'force'))});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsBots, "Toy", traits, 'force'))});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsBots, "Head", traits, 'force'))});
 
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Attack", "value": Math.round(getStatAttack(dbStatsBots, "Weapon", traits))});
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Defence", "value": Math.round(getStatAttack(dbStatsBots, "Toy", traits))});
@@ -297,7 +267,7 @@ app.get('/shroom/:token_id', function (req, res) {
 
   traits.forEach(el => {
     if(el.trait_type === 'Head'){
-      el['rarity'] = getStatAttack(dbStatsShrooms, "Head", traits)
+      el['rarity'] = getStat(dbStatsShrooms, "Head", traits, 'rarity')
 
       ShroomHeadImgs.forEach(elem => {
         if(el.value === elem.item) HeadLink += elem.img
@@ -305,7 +275,7 @@ app.get('/shroom/:token_id', function (req, res) {
     }
     
     if(el.trait_type === 'Weapon'){
-      el['rarity'] = getStatAttack(dbStatsShrooms, "Weapon", traits)
+      el['rarity'] = getStat(dbStatsShrooms, "Weapon", traits, 'rarity')
 
       ShroomWeaponImgs.forEach(elem => {
         if(el.value === elem.item) WeaponLink += elem.img
@@ -313,7 +283,7 @@ app.get('/shroom/:token_id', function (req, res) {
     } 
     
     if(el.trait_type === 'Tools'){
-      el['rarity'] = getStatAttack(dbStatsShrooms, "Tools", traits)
+      el['rarity'] = getStat(dbStatsShrooms, "Tools", traits, 'rarity')
 
       ShroomToysImgs.forEach(elem => {
         if(el.value === elem.item) ToysLink += elem.img
@@ -321,7 +291,7 @@ app.get('/shroom/:token_id', function (req, res) {
     }
 
     if(el.trait_type === 'Platform'){
-      el['rarity'] = getStatAttack(dbStatsShrooms, "Platform", traits)
+      el['rarity'] = getStat(dbStatsShrooms, "Platform", traits, 'rarity')
 
       ShroomPlatformImgs.forEach(elem => {
         if(el.value === elem.item) PlatformLink += elem.img
@@ -329,9 +299,9 @@ app.get('/shroom/:token_id', function (req, res) {
     }
   })
 
-  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsShrooms, "Weapon", traits))});
-  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsShrooms, "Tools", traits))});
-  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsShrooms, "Head", traits))});
+  traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsShrooms, "Weapon", traits, 'force'))});
+  traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsShrooms, "Tools", traits, 'force'))});
+  traits.push({"display_type": "boost_number", "trait_type": "Trick", "value": Math.round(getStat(dbStatsShrooms, "Head", traits, 'force'))});
 
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Attack", "value": Math.round(getStatAttack(dbStatsShrooms, "Weapon", traits))});
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Attack_Defence", "value": Math.round(getStatAttack(dbStatsShrooms, "Tools", traits))});
