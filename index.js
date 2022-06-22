@@ -63,6 +63,94 @@ const Stat = new mongoose.Schema({
 
 const NewModel = new mongoose.model("userStats", Stat)
 
+const BotHeadImgs = [
+  {item: 'Happy Cylinder', img: '0001.png'},
+  {item: 'Surprised Sphere', img: '0002.png'},
+  {item: 'Toothy', img: '0003.png'},
+  {item: 'Sad Pot', img: '0004.png'},
+  {item: 'Ninja', img: '0005.png'},
+  {item: 'Sucker', img: '0006.png'},
+  {item: 'Happy Speaker', img: '0007.png'},
+  {item: 'Crazy Skull', img: '0008.png'}
+],
+
+BotWeaponImgs = [
+  {item:'Saw', img: '0001.png'},
+  {item:'Drill', img: '0002.png'},
+  {item:'Hammer', img: '0003.png'},
+  {item:'Axe', img: '0004.png'},
+  {item:'Lightnning', img: '0005.png'},
+  {item:'Claw', img: '0006.png'},
+  {item:'Club', img: '0007.png'},
+  {item:'Double Spike', img: '0008.png'},
+  {item:'Spike', img: '0009.png'},
+  {item:'Blade', img: '0010.png'}
+],
+
+BotToysImgs = [
+  {item: 'Ball', img: '0001.png'},
+  {item: 'Drum', img: '0002.png'},
+  {item: 'Icecream', img: '0003.png'},
+  {item: 'Lollipop', img: '0004.png'},
+  {item: 'Shovel', img: '0005.png'},
+  {item: 'Rocket', img: '0006.png'},
+  {item: 'Shaker', img: '0007.png'},
+  {item: 'Bottle', img: '0008.png'},
+  {item: 'Ducky', img: '0009.png'},
+  {item: 'Balloons', img: '0010.png'},
+  {item: 'Windmill', img: '0011.png'} ],
+
+BotPlatformImgs = [
+  {item: 'Platform 1', img: '0001.png'},
+  {item: 'Platform 2', img: '0002.png'},
+  {item: 'Platform 3', img: '0003.png'} ],
+
+ShroomHeadImgs = [
+    {item: 'Scientist', img: '0003.png'},
+    {item: 'Monk', img: '0009.png'},
+    {item: 'Professor', img: '0010.png'},
+    {item: 'Four-eyed', img: '0008.png'},
+    {item: 'Mentalist', img: '0001.png'},
+    {item: 'Gilles', img: '0007.png'},
+    {item: 'Favus', img: '0006.png'},
+    {item: 'Redneck', img: '0011.png'},
+    {item: 'Viking', img: '0002.png'},
+    {item: 'Snaims', img: '0004.png'},
+    {item: 'Licker', img: '0005.png'} ],
+
+ShroomWeaponImgs = [
+  {item: 'Tripple Hook', img: '0004.png'},
+  {item: 'Nunchucks', img: '0011.png'},
+  {item: 'Sword', img: '0002.png'},
+  {item: 'Scissors', img: '0008.png'},
+  {item: 'Long Knife', img: '0001.png'},
+  {item: 'Mace', img: '0009.png'},
+  {item: 'Hammer', img: '0006.png'},
+  {item: 'Axe', img: '0007.png'},
+  {item: 'Hoe', img: '0005.png'},
+  {item: 'Shovel', img: '0010.png'},
+  {item: 'Butcher', img: '0003.png'} ],
+
+ShroomToysImgs = [
+    {item: 'Beehive', img: '0005.png'},
+    {item: 'Trap', img: '0011.png'},
+    {item: 'Bomb', img: '0009.png'},
+    {item: 'Poison', img: '0003.png'},
+    {item: 'Dreamcatcher', img: '0008.png'},
+    {item: 'Liquid', img: '0001.png'},
+    {item: 'Torch', img: '0007.png'},
+    {item: 'Net', img: '0010.png'},
+    {item: 'Circle Shield', img: '0002.png'},
+    {item: 'Doll', img: '0004.png'},
+    {item: 'Hexagon Shield', img: '0006.png'} ],
+
+ShroomPlatformImgs = [
+  {item: 'Platform 1', img: '0001.png'},
+  {item: 'Platform 2', img: '0002.png'},
+  {item: 'Platform 3', img: '0003.png'},
+  {item: 'Platform 4', img: '0003.png'} ]  
+
+
 function getStat(db, type, traits) {
   result = false;
   statsAll = db.get(type);
@@ -119,60 +207,40 @@ app.get('/bot/:token_id', function (req, res) {
     PlatformLink = 'https://storage.googleapis.com/battleverse/Items/Bots%2082x82/Platforms/platforms.'
 
   traits.forEach(el => {
+
     if(el.trait_type === 'Head'){
       el['rarity'] = getStatAttack(dbStatsBots, "Head", traits)
-      if(el.value === 'Happy Cylinder') HeadLink += '0001.png'
-      else if(el.value === 'Surprised Sphere') HeadLink += '0002.png'
-      else if(el.value === 'Toothy') HeadLink += '0003.png'
-      else if(el.value === 'Sad Pot') HeadLink += '0004.png'
-      else if(el.value === 'Ninja') HeadLink += '0005.png'
-      else if(el.value === 'Sucker') HeadLink += '0006.png'
-      else if(el.value === 'Happy Speaker') HeadLink += '0007.png'
-      else if(el.value === 'Crazy Skull') HeadLink += '0008.png'
-    }
-  })
 
-  traits.forEach(el => {
+      BotHeadImgs.forEach(elem => {
+        if(el.value === elem.item) HeadLink += elem.img
+      })      
+    }
+    
     if(el.trait_type === 'Weapon'){
       el['rarity'] = getStatAttack(dbStatsBots, "Weapon", traits)
-      if(el.value === 'Saw') WeaponLink += '0001.png'
-      else if(el.value === 'Drill') WeaponLink += '0002.png'
-      else if(el.value === 'Hammer') WeaponLink += '0003.png'
-      else if(el.value === 'Axe') WeaponLink += '0004.png'
-      else if(el.value === 'Lightnning') WeaponLink += '0005.png'
-      else if(el.value === 'Claw') WeaponLink += '0006.png'
-      else if(el.value === 'Club') WeaponLink += '0007.png'
-      else if(el.value === 'Double Spike') WeaponLink += '0008.png'
-      else if(el.value === 'Spike') WeaponLink += '0009.png'
-      else if(el.value === 'Blade') WeaponLink += '0010.png'
-    }
-  })
 
-  traits.forEach(el => {
+      BotWeaponImgs.forEach(elem => {
+        if(el.value === elem.item) WeaponLink += elem.img
+      }) 
+    }    
+    
     if(el.trait_type === 'Toy'){
       el['rarity'] = getStatAttack(dbStatsBots, "Toy", traits)
-      if(el.value === 'Ball') ToysLink += '0001.png'
-      else if(el.value === 'Drum') ToysLink += '0002.png'
-      else if(el.value === 'Icecream') ToysLink += '0003.png'
-      else if(el.value === 'Lollipop') ToysLink += '0004.png'
-      else if(el.value === 'Shovel') ToysLink += '0005.png'
-      else if(el.value === 'Rocket') ToysLink += '0006.png'
-      else if(el.value === 'Shaker') ToysLink += '0007.png'
-      else if(el.value === 'Bottle') ToysLink += '0008.png'
-      else if(el.value === 'Ducky') ToysLink += '0009.png'
-      else if(el.value === 'Balloons') ToysLink += '0010.png'
-      else if(el.value === 'Windmill') ToysLink += '0011.png'
-    }
-  })  
 
-  traits.forEach(el => {
+      BotToysImgs.forEach(elem => {
+        if(el.value === elem.item) ToysLink += elem.img
+      }) 
+    }    
+    
     if(el.trait_type === 'Platform'){
       el['rarity'] = getStatAttack(dbStatsBots, "Platform", traits)
-      if(el.value === 'Platform 1') PlatformLink += '0001.png'
-      else if(el.value === 'Platform 2') PlatformLink += '0002.png'
-      else if(el.value === 'Platform 3') PlatformLink += '0003.png'
-    }
-  })    
+
+      BotPlatformImgs.forEach(elem => {
+        if(el.value === elem.item) PlatformLink += elem.img
+      }) 
+    }    
+
+  })
 
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsBots, "Weapon", traits))});
@@ -225,66 +293,41 @@ app.get('/shroom/:token_id', function (req, res) {
     ToysLink = 'https://storage.googleapis.com/battleverse/Items/Shrooms%2082x82/Toys/icons_v07.tools_shrooms.',
     PlatformLink = 'https://storage.googleapis.com/battleverse/Items/Shrooms%2082x82/Platforms/platforms.'
 
+
+
   traits.forEach(el => {
     if(el.trait_type === 'Head'){
       el['rarity'] = getStatAttack(dbStatsShrooms, "Head", traits)
-      if(el.value === 'Scientist') HeadLink += '0003.png'
-      else if(el.value === 'Monk') HeadLink += '0009.png'
-      else if(el.value === 'Professor') HeadLink += '0010.png'
-      else if(el.value === 'Four-eyed') HeadLink += '0008.png'
-      else if(el.value === 'Mentalist') HeadLink += '0001.png'
-      else if(el.value === 'Gilles') HeadLink += '0007.png'
-      else if(el.value === 'Favus') HeadLink += '0006.png'
-      else if(el.value === 'Redneck') HeadLink += '0011.png'
-      else if(el.value === 'Viking') HeadLink += '0002.png'
-      else if(el.value === 'Snaims') HeadLink += '0004.png'
-      else if(el.value === 'Licker') HeadLink += '0005.png'
-    }
-  })
 
-  traits.forEach(el => {
+      ShroomHeadImgs.forEach(elem => {
+        if(el.value === elem.item) HeadLink += elem.img
+      })
+    }
+    
     if(el.trait_type === 'Weapon'){
       el['rarity'] = getStatAttack(dbStatsShrooms, "Weapon", traits)
-      if(el.value === 'Tripple Hook') WeaponLink += '0004.png'
-      else if(el.value === 'Nunchucks') WeaponLink += '0011.png'
-      else if(el.value === 'Sword') WeaponLink += '0002.png'
-      else if(el.value === 'Scissors') WeaponLink += '0008.png'
-      else if(el.value === 'Long Knife') WeaponLink += '0001.png'
-      else if(el.value === 'Mace') WeaponLink += '0009.png'
-      else if(el.value === 'Hammer') WeaponLink += '0006.png'
-      else if(el.value === 'Axe') WeaponLink += '0007.png'
-      else if(el.value === 'Hoe') WeaponLink += '0005.png'
-      else if(el.value === 'Shovel') WeaponLink += '0010.png'
-      else if(el.value === 'Butcher') WeaponLink += '0003.png'
-    }
-  })
 
-  traits.forEach(el => {
+      ShroomWeaponImgs.forEach(elem => {
+        if(el.value === elem.item) WeaponLink += elem.img
+      })
+    } 
+    
     if(el.trait_type === 'Tools'){
       el['rarity'] = getStatAttack(dbStatsShrooms, "Tools", traits)
-      if(el.value === 'Beehive') ToysLink += '0005.png'
-      else if(el.value === 'Trap') ToysLink += '0011.png'
-      else if(el.value === 'Bomb') ToysLink += '0009.png'
-      else if(el.value === 'Poison') ToysLink += '0003.png'
-      else if(el.value === 'Dreamcatcher') ToysLink += '0008.png'
-      else if(el.value === 'Liquid') ToysLink += '0001.png'
-      else if(el.value === 'Torch') ToysLink += '0007.png'
-      else if(el.value === 'Net') ToysLink += '0010.png'
-      else if(el.value === 'Circle Shield') ToysLink += '0002.png'
-      else if(el.value === 'Doll') ToysLink += '0004.png'
-      else if(el.value === 'Hexagon Shield') ToysLink += '0006.png'
-    }
-  })  
 
-  traits.forEach(el => {
+      ShroomToysImgs.forEach(elem => {
+        if(el.value === elem.item) ToysLink += elem.img
+      })
+    }
+
     if(el.trait_type === 'Platform'){
       el['rarity'] = getStatAttack(dbStatsShrooms, "Platform", traits)
-      if(el.value === 'Platform 1') PlatformLink += '0001.png'
-      else if(el.value === 'Platform 2') PlatformLink += '0002.png'
-      else if(el.value === 'Platform 3') PlatformLink += '0003.png'
-      else if(el.value === 'Platform 4') PlatformLink += '0003.png'
+
+      ShroomPlatformImgs.forEach(elem => {
+        if(el.value === elem.item) PlatformLink += elem.img
+      })
     }
-  })      
+  })
 
   traits.push({"display_type": "boost_number", "trait_type": "Attack", "value": Math.round(getStat(dbStatsShrooms, "Weapon", traits))});
   traits.push({"display_type": "boost_number", "trait_type": "Defence", "value": Math.round(getStat(dbStatsShrooms, "Tools", traits))});
