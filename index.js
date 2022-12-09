@@ -229,13 +229,13 @@ app.get('/bot/:token_id', function (req, res) {
 
   let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
-    image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
+    image: 'https://storage.googleapis.com/battleverse/deprecated.png',
     name: 'Baby Combat Bot #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon',
     },
-    alpha_125: 'https://battleverse.storage.googleapis.com/bots_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/bots_alpha_500/a_'+tokenId+'.png',
+    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated.png',
     head_link: HeadLink,
     weapon_link: WeaponLink,
     toys_link: ToysLink,
@@ -243,8 +243,8 @@ app.get('/bot/:token_id', function (req, res) {
   };
 
   if (revealIsActive) {
-    tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
-    tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated.png';
+    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated.png';
     tokenDetails.attributes = traits;
   }
 
@@ -314,14 +314,14 @@ app.get('/shroom/:token_id', function (req, res) {
   traits.push({"trait_type": "Health", "value": 100});
 
   let tokenDetails = {
-    description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
-    image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
+    description: "Deprecated! Don't Buy! First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
+    image: 'https://storage.googleapis.com/battleverse/deprecated.png',
     name: 'Battle Shroom #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
     },
-    alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png',
+    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated.png',
     head_link: HeadLink,
     weapon_link: WeaponLink,
     toys_link: ToysLink,
@@ -329,8 +329,8 @@ app.get('/shroom/:token_id', function (req, res) {
   };
 
   if (revealIsActive) {
-    tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
-    tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated.png';
+    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated.png';
     tokenDetails.attributes = traits;
   }
 
@@ -369,18 +369,18 @@ app.get('/testshroom/:token_id', function (req, res) {
 
   let tokenDetails = {
     description: "First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
-    image: 'https://ipfs.io/ipfs/' + placeholderIpfsHash,
+    image: 'https://storage.googleapis.com/battleverse/deprecated.png',
     name: 'Battle Shroom #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
     },
-    alpha_125: 'https://battleverse.storage.googleapis.com/shrooms_alpha_125/a_'+tokenId+'.png',
-    alpha_500: 'https://battleverse.storage.googleapis.com/shrooms_alpha_500/a_'+tokenId+'.png'
+    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated.png'
   };
 
   if (revealIsActive) {
-    tokenDetails.image = 'https://ipfs.io/ipfs/' + ipfsHash;
-    tokenDetails.ipfs_image = 'https://ipfs.io/ipfs/' + ipfsHash;
+    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated.png';
+    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated.png';
     tokenDetails.attributes = traits;
   }
 
