@@ -58,7 +58,7 @@ const Stat = new mongoose.Schema({
   theme: Array,
   response: Array,
   user_Message: Array,
-  logs: Array 
+  logs: Array
 })
 
 const NewModel = new mongoose.model("userStats", Stat)
@@ -148,7 +148,7 @@ ShroomPlatformImgs = [
   {item: 'Platform 1', img: '0001.png'},
   {item: 'Platform 2', img: '0002.png'},
   {item: 'Platform 3', img: '0003.png'},
-  {item: 'Platform 4', img: '0003.png'} ]  
+  {item: 'Platform 4', img: '0003.png'} ]
 
 
 function getStat(db, type, traits, stata) {
@@ -183,32 +183,32 @@ app.get('/bot/:token_id', function (req, res) {
 
       BotHeadImgs.forEach(elem => {
         if(el.value === elem.item) HeadLink += elem.img
-      })      
+      })
     }
-    
+
     if(el.trait_type === 'Weapon'){
       el['rarity'] = getStat(dbStatsBots, "Weapon", traits, 'rarity')
 
       BotWeaponImgs.forEach(elem => {
         if(el.value === elem.item) WeaponLink += elem.img
-      }) 
-    }    
-    
+      })
+    }
+
     if(el.trait_type === 'Toy'){
       el['rarity'] = getStat(dbStatsBots, "Toy", traits, 'rarity')
 
       BotToysImgs.forEach(elem => {
         if(el.value === elem.item) ToysLink += elem.img
-      }) 
-    }    
-    
+      })
+    }
+
     if(el.trait_type === 'Platform'){
       el['rarity'] = getStat(dbStatsBots, "Platform", traits, 'rarity')
 
       BotPlatformImgs.forEach(elem => {
         if(el.value === elem.item) PlatformLink += elem.img
-      }) 
-    }    
+      })
+    }
 
   })
 
@@ -223,7 +223,7 @@ app.get('/bot/:token_id', function (req, res) {
 
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Attack", "value": Math.round(getStatSelfBoost(dbStatsBots, "Weapon", traits))});
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Defence", "value": Math.round(getStatSelfBoost(dbStatsBots, "Toy", traits))});
-  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsBots, "Head", traits))});  
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsBots, "Head", traits))});
 
   traits.push({"trait_type": "Health", "value": 100});
 
@@ -239,7 +239,7 @@ app.get('/bot/:token_id', function (req, res) {
     head_link: HeadLink,
     weapon_link: WeaponLink,
     toys_link: ToysLink,
-    platform_link: PlatformLink 
+    platform_link: PlatformLink
   };
 
   if (revealIsActive) {
@@ -273,15 +273,15 @@ app.get('/shroom/:token_id', function (req, res) {
         if(el.value === elem.item) HeadLink += elem.img
       })
     }
-    
+
     if(el.trait_type === 'Weapon'){
       el['rarity'] = getStat(dbStatsShrooms, "Weapon", traits, 'rarity')
 
       ShroomWeaponImgs.forEach(elem => {
         if(el.value === elem.item) WeaponLink += elem.img
       })
-    } 
-    
+    }
+
     if(el.trait_type === 'Tools'){
       el['rarity'] = getStat(dbStatsShrooms, "Tools", traits, 'rarity')
 
@@ -309,19 +309,19 @@ app.get('/shroom/:token_id', function (req, res) {
 
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Attack", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Weapon", traits))});
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Defence", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Tools", traits))});
-  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Head", traits))}); 
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Head", traits))});
 
   traits.push({"trait_type": "Health", "value": 100});
 
   let tokenDetails = {
     description: "Deprecated! Don't Buy! First generation of Battle Shrooms — a collection of procedurally generated mushrooms race ready to fight in BattleVerse!",
-    image: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    image: 'https://storage.googleapis.com/battleverse/deprecated/shrooms/'+tokenId+'.jpg',
     name: 'Battle Shroom #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon'
     },
-    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated.png',
-    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated/shrooms/'+tokenId+'.jpg',
+    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated/shrooms/'+tokenId+'.jpg',
     head_link: HeadLink,
     weapon_link: WeaponLink,
     toys_link: ToysLink,
@@ -329,8 +329,8 @@ app.get('/shroom/:token_id', function (req, res) {
   };
 
   if (revealIsActive) {
-    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated.png';
-    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated.png';
+    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated/shrooms/'+tokenId+'.jpg';
+    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated/shrooms/'+tokenId+'.jpg';
     tokenDetails.attributes = traits;
   }
 
@@ -342,7 +342,7 @@ app.get('/shroom/:token_id', function (req, res) {
 app.get('/testshroom/:token_id', function (req, res) {
   const tokenId = parseInt(690).toString();
   const ipfsHash = dbIpfsHashesShrooms.get(tokenId);
-  
+
   traits = [
     { trait_type: 'Head', value: 'Monk' },
     { trait_type: 'Tools', value: 'Net' },
@@ -363,7 +363,7 @@ app.get('/testshroom/:token_id', function (req, res) {
 
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Attack", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Weapon", traits))});
   // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Defence", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Tools", traits))});
-  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Head", traits))}); 
+  // traits.push({"display_type": "boost_number", "trait_type": "racing_Selfboost_Trick", "value": Math.round(getStatSelfBoost(dbStatsShrooms, "Head", traits))});
 
   traits.push({"trait_type": "Health", "value": 100});
 
@@ -473,7 +473,7 @@ app.post('/sendDataAboutBug', async function (req, res) {
 
   const data = NewModel({
     logId: req.body.logId,
-    wallet: req.body.wallet, 
+    wallet: req.body.wallet,
     theme: req.body.theme,
     date: isoStr,
     response: req.body.statsOther,
@@ -488,10 +488,10 @@ app.post('/sendDataAboutBug', async function (req, res) {
     const response = await notion.pages.create({
       parent: { database_id: databaseId },
       properties: {
-        Id: { 
+        Id: {
           number: req.body.logId
-        },        
-        Title: { 
+        },
+        Title: {
           title:[
             {
               text: {
@@ -500,7 +500,7 @@ app.post('/sendDataAboutBug', async function (req, res) {
             }
           ]
         },
-        User_Message: { 
+        User_Message: {
           rich_text:[
             {
               text: {
@@ -508,8 +508,8 @@ app.post('/sendDataAboutBug', async function (req, res) {
               }
             }
           ]
-        },        
-        Theme: { 
+        },
+        Theme: {
           rich_text:[
             {
               text: {
@@ -518,7 +518,7 @@ app.post('/sendDataAboutBug', async function (req, res) {
             }
           ]
         },
-        Wallet: { 
+        Wallet: {
           rich_text:[
             {
               text: {
@@ -526,10 +526,10 @@ app.post('/sendDataAboutBug', async function (req, res) {
               }
             }
           ]
-        },        
-        Link: { 
-          url: 'https://tokens.battleverse.io/logs/' + String(req.body.logId) 
-        }                  
+        },
+        Link: {
+          url: 'https://tokens.battleverse.io/logs/' + String(req.body.logId)
+        }
       }
     })
     console.log(response)
@@ -547,13 +547,13 @@ app.get('/logs', async function (req, res) {
     newArr.push({wallet: logs[x].wallet, logId: logs[x].logId, theme: logs[x].theme, response: logs[x].response,
       user_Message: logs[x].user_Message, date: logs[x].date, logs: logs[x].logs })
   }
-  res.send(newArr.reverse());  
+  res.send(newArr.reverse());
 })
 
 app.get('/logs/:id', async function (req, res) {
   console.log('log id', req.params.id)
   const logs = await NewModel.findOne({logId: req.params.id})
-  res.send(logs);  
+  res.send(logs);
 })
 
 app.post('/submitFormToNotion', async (req, res) => {
