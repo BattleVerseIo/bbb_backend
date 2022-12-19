@@ -229,13 +229,13 @@ app.get('/bot/:token_id', function (req, res) {
 
   let tokenDetails = {
     description: "Baby Combat Bots is a collection of cute and deadly procedurally generated robots. Own a Bot. Battle other Bots. Earn Eth.",
-    image: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    image: 'https://storage.googleapis.com/battleverse/deprecated/bots/'+tokenId+'.jpg',
     name: 'Baby Combat Bot #' + tokenId,
     attributes: {
       'Ready To Battle': 'Soon',
     },
-    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated.png',
-    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated.png',
+    alpha_125: 'https://storage.googleapis.com/battleverse/deprecated/bots/'+tokenId+'.jpg',
+    alpha_500: 'https://storage.googleapis.com/battleverse/deprecated/bots/'+tokenId+'.jpg',
     head_link: HeadLink,
     weapon_link: WeaponLink,
     toys_link: ToysLink,
@@ -243,8 +243,8 @@ app.get('/bot/:token_id', function (req, res) {
   };
 
   if (revealIsActive) {
-    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated.png';
-    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated.png';
+    tokenDetails.image = 'https://storage.googleapis.com/battleverse/deprecated/bots/'+tokenId+'.jpg';
+    tokenDetails.ipfs_image = 'https://storage.googleapis.com/battleverse/deprecated/bots/'+tokenId+'.jpg';
     tokenDetails.attributes = traits;
   }
 
